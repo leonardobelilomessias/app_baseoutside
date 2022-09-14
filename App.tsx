@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   const [statement,setStatement] = useState(false)
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Baseoutside</Text>
-      <Button title='click aqui por favor ' onPress={()=>setStatement(!statement)}/>
+      <TextInput style={styles.fildInput} placeholder='email'/>
+      <TextInput style={styles.fildInput}  placeholder='Senha'/>
+      <Button title='Entrar' onPress={()=>setStatement(!statement)}/>
         {!statement && <Text style={ styles.statement}>Hellow my friend </Text>}
         
       <StatusBar style="auto" />
@@ -29,5 +31,14 @@ const styles = StyleSheet.create({
   },
   statement:{
     fontSize:24
+  },
+  fildInput:{
+    width:300,
+    borderColor:'gray',
+    borderWidth:1,
+    padding:5,
+    marginBottom:10,
+    borderRadius:4,
   }
+
 });
