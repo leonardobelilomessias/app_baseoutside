@@ -1,16 +1,23 @@
-import { View, StyleSheet,Text, Button } from "react-native";
+import { View, StyleSheet,Text, Button, Pressable } from "react-native";
 
 export default function InfoContainer(){
   return(
     <View style={style.container}>
-      <Text style={style.textName}>  Leonardo Belilo</Text>
-      <Text>Brefily description about my life, to share wit other 
-        people that want to participe of my actions
-      </Text>
-      <View style={style.containerButons}>
-        <Button  title="colab"/>
-        <Button title= "sponsor"/>
+      <View style={style.styleTextContainer}>
+        <Text style={style.textName}>Leonardo Belilo</Text>
+          <Text>
+          Brefily description about my life, to share wit other 
+          people that want to participe of my actions
+        </Text>
+      </View>
 
+      <View style={style.containerButons}>
+        <Pressable style={style.styleButton} >
+           <Text>colab</Text>
+        </Pressable>
+        <Pressable  style={[style.styleButton,style.styleButtonSponsor]}>
+          <Text>Sponsor</Text>
+        </Pressable>
       </View>
     </View>
   )
@@ -21,7 +28,7 @@ const style = StyleSheet.create({
     backgroundColor:"#F6F6F6",
     borderLeftColor:"#CBCBCA",
     borderLeftWidth:1,
-    padding:10
+    padding:10,
   },
   textName:{
     fontSize:16,
@@ -30,9 +37,17 @@ const style = StyleSheet.create({
   containerButons:{
     marginTop:10,
     flexDirection:"row",
-    justifyContent:"space-around"
   },
-  styleCuton:{
-
+  styleButton:{
+    borderBottomColor:"#CBCBCA",
+    borderWidth:1,
+    padding:5,
+    marginRight:15
+  },
+  styleButtonSponsor:{
+    paddingHorizontal:15
+  },
+  styleTextContainer:{
+    flex:1
   }
 })

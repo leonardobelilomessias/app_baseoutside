@@ -17,11 +17,8 @@ return(
 }
 const style = StyleSheet.create({
   container:{
-
-
   },
   displayInfo:{
-
     flexDirection:"row"
   }
 })
