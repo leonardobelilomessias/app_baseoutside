@@ -1,44 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import HomeScreen from './src/screens/HomeScreen';
 
 export default function App() {
-  const [statement,setStatement] = useState(false)
+
   return (
+  <>
+    <StatusBar style="light" translucent={false}/>
+    <SafeAreaView style= {styles.container}>
     <View style={styles.container}>
-      <Text style={styles.text}>Baseoutside</Text>
-      <TextInput style={styles.fildInput} placeholder='email'/>
-      <TextInput style={styles.fildInput}  placeholder='Senha'/>
-      <Button title='Entrar' onPress={()=>setStatement(!statement)}/>
-        {!statement && <Text style={ styles.statement}>Hellow my friend </Text>}
-        
-      <StatusBar style="auto" />
+  
+        <HomeScreen/>
     </View>
+    </SafeAreaView>
+  </>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text:{
-    fontSize:42,
-    fontWeight:'bold'
-  },
-  statement:{
-    fontSize:24
-  },
-  fildInput:{
-    width:300,
-    borderColor:'gray',
-    borderWidth:1,
-    padding:5,
-    marginBottom:10,
-    borderRadius:4,
+    flex:1
   }
 
 });
