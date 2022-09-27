@@ -1,6 +1,13 @@
+import { useNavigation } from "@react-navigation/native";
 import { View, StyleSheet,Text, Button, Pressable } from "react-native";
-
+interface navigatiorPros{
+  navigate:(string:string) => (string);
+}
 export default function InfoContainer(){
+  const navigation :navigatiorPros= useNavigation()
+  function handleGetSponsor(){
+    navigation.navigate("Sponsor")
+  }
   return(
     <View style={style.container}>
       <View style={style.styleTextContainer}>
@@ -15,7 +22,7 @@ export default function InfoContainer(){
         <Pressable style={style.styleButton} >
            <Text>colab</Text>
         </Pressable>
-        <Pressable  style={[style.styleButton,style.styleButtonSponsor]}>
+        <Pressable onPress={handleGetSponsor} style={[style.styleButton,style.styleButtonSponsor]}>
           <Text>Sponsor</Text>
         </Pressable>
       </View>

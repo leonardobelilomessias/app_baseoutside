@@ -1,18 +1,21 @@
 import {View,Text,StyleSheet,TextInput ,Button} from 'react-native'
 import { useState } from 'react';
-import AgentProfile from '../Components/AgentProfile';
+import AgentProfile from '../../Components/AgentProfile';
 
 export default function HomeScreen(){
 
   return(
-    <View>
+    <View style={styles.container}>
        <AgentProfile/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    flex:1,
+
+  }
   
 
 });
