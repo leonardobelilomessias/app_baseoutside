@@ -1,8 +1,8 @@
 import {View,Text,StyleSheet,TextInput ,Button} from 'react-native'
 import { useState } from 'react';
-import AgentProfile from '../../Components/AgentProfile';
+import AgentProfile from '../../../Components/AgentProfile';
 
-export default function HomeScreen(){
+export default function AgentPRofile(){
 
   return(
     <View style={styles.container}>

@@ -1,9 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { View, StyleSheet,Text, Button, Pressable } from "react-native";
+import { useAuth } from "../../../hooks/auth";
 interface navigatiorPros{
   navigate:(string:string) => (string);
 }
 export default function InfoContainer(){
+  const {user} = useAuth()
   const navigation :navigatiorPros= useNavigation()
   function handleGetSponsor(){
     navigation.navigate("Sponsor")
@@ -11,10 +13,9 @@ export default function InfoContainer(){
   return(
     <View style={style.container}>
       <View style={style.styleTextContainer}>
-        <Text style={style.textName}>Leonardo Belilo</Text>
+        <Text style={style.textName}>{user.name}</Text>
           <Text>
-          Brefily description about my life, to share wit other 
-          people that want to participe of my actions
+            {user.description}
         </Text>
       </View>
 

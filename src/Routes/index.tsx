@@ -1,12 +1,18 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { View ,StyleSheet} from 'react-native';
+import { useAuth } from '../hooks/auth';
+import { SignIn } from '../screens/SignIn';
 import { AuthRoutes } from './auth.routes';
+
 export function Routes(){
+  const {user} = useAuth()
+  console.log(user)
   return(
     <View style={style.container}>
-
     <NavigationContainer >
-      <AuthRoutes/>
+      {
+        user.id?<AuthRoutes/>:<SignIn/>
+      }
     </NavigationContainer>
     </View>
   )

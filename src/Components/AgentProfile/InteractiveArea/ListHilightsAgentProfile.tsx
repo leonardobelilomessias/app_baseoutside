@@ -17,7 +17,7 @@ export default function ListHighlightAgentProfile(){
   return(
     <View>
       <Text style={{marginHorizontal:20}}>Highlights</Text>
-      <FlatList data={highlight} renderItem={(itemData)=>
+      <FlatList showsHorizontalScrollIndicator={false} data={highlight} renderItem={(itemData)=>
       <View style={style.blockHighlight}>
         <Image style={style.img} 
         source={require("../../../assets/images/highlights/vl9.jpg")} />

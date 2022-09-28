@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text,StyleSheet} from "react-native";
 
 export function GetSponsorAgent(){
   return(
@@ -7,3 +7,6 @@ export function GetSponsorAgent(){
     </View>
   )
 }
+const style = StyleSheet.create({
+  
+})

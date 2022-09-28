@@ -1,18 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { AuthProvider } from './src/hooks/auth';
 import { Routes } from './src/Routes';
-import HomeScreen from './src/screens/Home';
-import { SignIn } from './src/screens/SignIn';
+
 
 export default function App() {
-
+    
   return (
   <>
     <StatusBar style="light" translucent={false}/>
     <SafeAreaView style= {styles.container}>
     <View style={styles.container}>
-      <Routes/>
+      <AuthProvider>
+           <Routes/>
+      </AuthProvider>
     </View>
     </SafeAreaView>
   </>
