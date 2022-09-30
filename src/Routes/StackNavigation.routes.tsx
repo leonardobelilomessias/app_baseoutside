@@ -9,7 +9,7 @@ const {Navigator,Screen} = createNativeStackNavigator()
 
 export function StackNavigation(){
 return (  
-  <Navigator >
+  <Navigator  screenOptions={{animation:'slide_from_right'}}>
     <Screen name='AgentPRofile'  options={{title:'Meu Perfil'}} component={HomeScreen}/>
     <Screen name='Sponsor' component={GetSponsorAgent}/>
   </Navigator>
