@@ -45,11 +45,19 @@ function AuthProvider({children}:AuthProviderProps){
       setLoading(true)
       console.log(email,password)
       //const response =   await api.post('/sessions',{email:email,password:password})
-      const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:email,password:password})).data 
-      console.log(token)
+     // const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:email.trim(),password:password})).data 
+      //console.log(token)
 
-      const infoAgent = await api.post('/agent/findByName',{name:agent.name})
-      setUser(infoAgent.data)
+     // const infoAgent = await api.post('/agent/findByName',{name:agent.name})
+     const agent= {
+      id_agent_token:'string',
+      id: 'string',
+      email:' string',
+      name: 'Agent Perfil',
+      user_name: 'string',
+      description:'mydescription',
+    }
+      setUser(agent)
       
 
 
