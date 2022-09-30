@@ -43,15 +43,21 @@ function AuthProvider({children}:AuthProviderProps){
   async function signIn({email,password}:SignInProps){
     try{
       setLoading(true)
-      const response =   await api.post('/sessions',{email:email,password:password})
+      console.log(email,password)
+      //const response =   await api.post('/sessions',{email:email,password:password})
       const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:email,password:password})).data 
-      const infoAgent = await api.get('/agent',{name:agent.name})
-      setUser(infoAgent.data[0].agent)
-      setLoading(false)
+      console.log(token)
+
+      const infoAgent = await api.post('/agent/findByName',{name:agent.name})
+      setUser(infoAgent.data)
       
 
-    }catch{
-      throw new Error("Não foi possivel autenticar!")
+
+    }catch(e:any){
+      console.log(e)
+      return e.message
+    }finally{
+      setLoading(false)
     }
   }
   return (

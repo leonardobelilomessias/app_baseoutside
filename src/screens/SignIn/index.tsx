@@ -16,8 +16,7 @@ export function SignIn(){
   async function handleSignIn(){
     try{
     const response =  await signIn({email,password})
-    
-
+  
     }catch(e:any){
       Alert.alert(e)
     }
@@ -26,8 +25,8 @@ export function SignIn(){
     <View style= {style.container}>
       <Image source={Logo} resizeMode="stretch" />
       <Text style={style.text}>Entrar</Text>
-      <TextInput style={style.input} placeholder="Email" onChangeText={setEmail}/>
-      <TextInput style={style.input} placeholder="Senha" onChangeText={setPassword} />
+      <TextInput style={style.input} placeholder="Email" autoCapitalize="none" onChangeText={setEmail}/>
+      <TextInput style={style.input} placeholder="Senha" secureTextEntry={true}  onChangeText={setPassword} />
       
       { loading ?<ActivityIndicator color={"#16D129"}/>:<TouchableOpacity style={style.buttonLogin} onPress={handleSignIn}  >
         <Text style =  {style.textButton}>Fazer Login</Text>
