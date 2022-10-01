@@ -1,4 +1,5 @@
 import { createContext,useState,useContext,ReactNode} from 'react'
+import { tableUsers } from '../dummys/fakeApi/tableAgent/infoAgent';
 import { api } from '../services/api';
 
 interface User{
@@ -57,7 +58,8 @@ function AuthProvider({children}:AuthProviderProps){
       user_name: 'string',
       description:'mydescription',
     }
-      setUser(agent)
+    const agents = tableUsers[0]
+    setUser(agents)
       
 
 

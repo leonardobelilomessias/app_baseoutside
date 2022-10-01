@@ -1,17 +1,22 @@
-import { Pressable, View,Text ,StyleSheet} from "react-native";
+import { Pressable, View,Text ,StyleSheet,PressableProps} from "react-native";
 import {ReactNode} from 'react'
 
-interface Props {
-
-  title:string
+interface Props extends PressableProps {
+  isActive?:boolean|string
+  title:string;
+  onPress:()=>void
 }
-export default function ButtonMenuAgentProfile({title}:Props){
+export default function ButtonMenuAgentProfile({title,isActive,onPress,...rest}:Props){
+  const isActives = isActive === title ? true : false
+  function press(){
+    console.log('press2')
+  }
   return(
-    <View style={style.styleButton}>
-      <Pressable style={style.stylePressableButton}>
-        <Text> {title} </Text>
+    <Pressable    style={style.styleButton}>
+      <Pressable  onPress={()=>{onPress()}}   style={[style.stylePressableButton,isActives && style.isSelected]}>
+        <Text style={isActives && style.isSelected}> {title} </Text>
       </Pressable>
-    </View>
+    </Pressable>
   )
 }
 const style = StyleSheet.create({
@@ -23,5 +28,12 @@ const style = StyleSheet.create({
     backgroundColor:"#D9D9D9",
     padding:10,
     marginHorizontal:1
+  },
+  isSelected:{
+    backgroundColor:'green',
+    color:'white'
+  },
+  textSelected:{
+    color:"white"
   }
 })

@@ -6,6 +6,8 @@ import { AuthRoutes } from './auth.routes';
 
 export function Routes(){
   const {user} = useAuth()
+
+
   return(
     <View style={style.container}>
     <NavigationContainer >

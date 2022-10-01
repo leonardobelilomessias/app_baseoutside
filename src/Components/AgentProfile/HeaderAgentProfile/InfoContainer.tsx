@@ -4,8 +4,11 @@ import { useAuth } from "../../../hooks/auth";
 interface navigatiorPros{
   navigate:(string:string) => (string);
 }
-export default function InfoContainer(){
-  const {user} = useAuth()
+interface PropsInfoUser{
+  user:any
+}
+export default function InfoContainer({user}:PropsInfoUser){
+  
   const navigation :navigatiorPros= useNavigation()
   function handleGetSponsor(){
     navigation.navigate("Sponsor")

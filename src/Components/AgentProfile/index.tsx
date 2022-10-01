@@ -4,7 +4,7 @@ import HeaderPofileAgent from "./HeaderAgentProfile";
 import InteractiveArea from "./InteractiveArea";
 import ModalAgentProfile from "./ModalCardAgentProfile";
 import InteractiveMenuAgentProfile from "./InteractiveMenuAgentProfile";
-import ContentAgentProfile from "./ContentAgentProfile";
+import ContentAgentProfile from "./InteractiveMenuAgentProfile/ContentAgentProfile";
 
 export default function AgentProfile(){
   const [isVisibleModa,setIsVisibleModal] = useState(false)

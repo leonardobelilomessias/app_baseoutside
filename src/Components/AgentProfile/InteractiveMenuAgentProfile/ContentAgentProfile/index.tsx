@@ -1,5 +1,5 @@
 import { View, FlatList,Image, StyleSheet, ImageBackground ,Pressable} from "react-native";
-import { images } from "../../../dummys/images";
+import { images } from "../../../../dummys/images";
 const mg = images
 export default function ContentAgentProfile(){
   return(

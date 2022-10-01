@@ -15,7 +15,7 @@ export function HeaderSponsorAgent(){
 const style = StyleSheet.create({
   container:{
     alignItems:"center",
-    borderBottomColor:"gray",
+    borderBottomColor:"grey",
     borderWidth:1,backgroundColor:'white',
     borderBottomEndRadius:200,
 
