@@ -7,7 +7,7 @@ import { StackNavigation } from './StackNavigation.routes'
 const {Navigator,Screen}  = createBottomTabNavigator()
 export function TabNavigation(){
   return(
-  <Navigator>
+  <Navigator screenOptions={{tabBarHideOnKeyboard:true,}}>
     <Screen name= "Home" options={{headerShown:false,}} component={ StackNavigation} />
     <Screen name='Search' component={GetSponsorAgent} />
     <Screen name='Share' component={GetSponsorAgent}/>

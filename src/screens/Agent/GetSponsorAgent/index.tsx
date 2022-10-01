@@ -1,10 +1,9 @@
 import { View, Text,StyleSheet} from "react-native";
+import { SponsorAgent } from "../../../Components/SponsorAgent";
 
 export function GetSponsorAgent(){
   return(
-    <View>
-      <Text>Sponsor</Text>
-    </View>
+    <SponsorAgent/>
   )
 }
 const style = StyleSheet.create({

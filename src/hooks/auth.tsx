@@ -43,7 +43,7 @@ function AuthProvider({children}:AuthProviderProps){
   async function signIn({email,password}:SignInProps){
     try{
       setLoading(true)
-      console.log(email,password)
+     // console.log(email,password)
       //const response =   await api.post('/sessions',{email:email,password:password})
      // const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:email.trim(),password:password})).data 
       //console.log(token)
