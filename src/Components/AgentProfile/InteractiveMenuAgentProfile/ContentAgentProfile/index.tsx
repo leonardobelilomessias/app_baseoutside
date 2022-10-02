@@ -1,32 +1,28 @@
-import { View, FlatList,Image, StyleSheet, ImageBackground ,Pressable} from "react-native";
+import React from "react";
+import { View, FlatList,Image, StyleSheet, ImageBackground ,Pressable,Text} from "react-native";
 import { images } from "../../../../dummys/images";
+import { ContainerJorney } from "./ContainerJourney";
+import { ContentExclusive } from "./ContentExclusive";
+import { InfoContent } from "./InfoContent";
+
 const mg = images
-export default function ContentAgentProfile(){
-  return(
-         <View style={style.block} >
-          {mg.map((image,index)=>(
-            <Pressable  style={({pressed})=>[style.blockImage,pressed &&  style.pressed]} key={index}>
-              <Image resizeMode="cover" style={style.img}
-              source={image.file}    />
-            </Pressable>
-          ))}
-
-        </View>
-
-
-
-  )
+interface contentPropos{
+  show:string
+}
+export default function ContentAgentProfile({show}:contentPropos){
+      if(show==='Exclusive') return <ContentExclusive/>
+      if(show ==='info') return <InfoContent/>
+      if(show ==='Journey') return<ContainerJorney/>
+      else return<></>
+  
 }
 const style = StyleSheet.create({
   container:{
-    backgroundColor:"red",
     flexDirection:"row"
   },
   img:{
     width:125,
     height:125,
-
-    backgroundColor:"gray"
   },
   block:{
     flexDirection:"row",

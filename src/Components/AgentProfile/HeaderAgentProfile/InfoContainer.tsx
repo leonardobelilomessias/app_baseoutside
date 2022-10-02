@@ -23,11 +23,11 @@ export default function InfoContainer({user}:PropsInfoUser){
       </View>
 
       <View style={style.containerButons}>
-        <Pressable style={style.styleButton} >
-           <Text>colab</Text>
+        <Pressable style={style.buttonColab} >
+           <Text style={style.textButton}>colab</Text>
         </Pressable>
-        <Pressable onPress={handleGetSponsor} style={[style.styleButton,style.styleButtonSponsor]}>
-          <Text>Sponsor</Text>
+        <Pressable onPress={handleGetSponsor} style={style.styleButtonSponsor}>
+          <Text style={style.textButtonSelected}>Sponsor</Text>
         </Pressable>
       </View>
     </View>
@@ -56,9 +56,27 @@ const style = StyleSheet.create({
     marginRight:15
   },
   styleButtonSponsor:{
-    paddingHorizontal:15
+    borderColor:'green',
+    padding:5,
+    paddingHorizontal:15,
+    marginRight:15,
+    borderRadius:4,
+    borderWidth:1
   },
   styleTextContainer:{
     flex:1
+  },
+  buttonColab:{
+    backgroundColor:'green',
+    padding:5,
+    paddingHorizontal:15,
+    marginRight:15,
+    borderRadius:4
+  },
+  textButton:{
+    color:'white'
+  },
+  textButtonSelected:{
+    color:'green'
   }
 })

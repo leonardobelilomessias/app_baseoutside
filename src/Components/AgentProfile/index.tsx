@@ -9,21 +9,24 @@ import ContentAgentProfile from "./InteractiveMenuAgentProfile/ContentAgentProfi
 export default function AgentProfile(){
   const [isVisibleModa,setIsVisibleModal] = useState(false)
   return(
-    <ScrollView>
-    <View style={style.container}>
+    <ScrollView style={style.container} >
+
       <HeaderPofileAgent/>
       <InteractiveArea openModal={setIsVisibleModal}/>
       <ModalAgentProfile visibleModal={isVisibleModa} setStateModal={setIsVisibleModal}/>
       <InteractiveMenuAgentProfile/>
-      <ContentAgentProfile/>
+
       
-    </View>
+
     </ScrollView>
   )
 }
 const style = StyleSheet.create({
   container:{
-
+    flex:1,
   },
+  container2:{
+    backgroundColor:'green'
+  }
 
 })
