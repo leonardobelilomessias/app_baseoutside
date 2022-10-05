@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, StyleSheet,Text, Button, Pressable } from "react-native";
 import { useAuth } from "../../../hooks/auth";
 interface navigatiorPros{
-  navigate:(string:string) => (string);
+  navigate:(string:string,screen:{screen:string}) => (string);
 }
 interface PropsInfoUser{
   user:any
@@ -11,7 +11,7 @@ export default function InfoContainer({user}:PropsInfoUser){
   
   const navigation :navigatiorPros= useNavigation()
   function handleGetSponsor(){
-    navigation.navigate("Sponsor")
+    navigation.navigate("Sponsor",{screen:"Sponsor"})
   }
   return(
     <View style={style.container}>

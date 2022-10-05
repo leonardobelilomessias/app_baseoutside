@@ -10,8 +10,8 @@ export default function InteractiveMenuAgentProfile(){
     
     <View style={style.menuContainer}>
       <ButtonMenuAgentProfile  isActive={selectMenu} onPress={()=>{SetSelectMenu('info')}} title='info'/>
-      <ButtonMenuAgentProfile isActive={selectMenu}  onPress={()=>{SetSelectMenu('Journey')}} title='Journey'/>
-      <ButtonMenuAgentProfile isActive={selectMenu}  onPress={()=>{SetSelectMenu('Exclusive')}} title='Exclusive'/>
+      <ButtonMenuAgentProfile isActive={selectMenu} onPress={()=>{SetSelectMenu('Journey')}} title='Journey'/>
+      <ButtonMenuAgentProfile isActive={selectMenu} onPress={()=>{SetSelectMenu('Exclusive')}} title='Exclusive'/>
     </View>
     <ContentAgentProfile show={selectMenu}/>
     </View>
