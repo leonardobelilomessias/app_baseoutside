@@ -14,7 +14,7 @@ export default function ButtonCardProfileAgent({openModal}:PropsButtonCardProfil
 }
 const style = StyleSheet.create({
   buttonCard:{
-    borderColor:"#16D129",
+    borderColor:"#3B8C6E",
     borderWidth:1,
     marginHorizontal:20,
     marginVertical:10,
@@ -22,6 +22,7 @@ const style = StyleSheet.create({
     alignItems:"center"
   },
   textButtonCard:{
-    color:"#16D129"
+    color:"#3B8C6E",
+    fontWeight:'500'
   }
 })

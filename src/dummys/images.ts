@@ -33,4 +33,18 @@ const highlights =[
 
 
 ]
-export {images,highlights}
+const icons =[
+  {file:require("../assets/images/icons/icon(1).png")},
+  {file:require("../assets/images/icons/icon(2).png")},
+  {file:require("../assets/images/icons/icon(3).png")},
+  {file:require("../assets/images/icons/icon(4).png")},
+  {file:require("../assets/images/icons/icon(6).png")},
+  {file:require("../assets/images/icons/icon(7).png")},
+  {file:require("../assets/images/icons/icon(8).png")},
+  {file:require("../assets/images/icons/icon(9).png")},
+  {file:require("../assets/images/icons/icon(10).png")},
+
+
+
+]
+export {images,highlights,icons}

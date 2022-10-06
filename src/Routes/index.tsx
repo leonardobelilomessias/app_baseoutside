@@ -3,6 +3,7 @@ import { View ,StyleSheet} from 'react-native';
 import { useAuth } from '../hooks/auth';
 import { SignIn } from '../screens/SignIn';
 import { AuthRoutes } from './auth.routes';
+import 'react-native-gesture-handler'
 
 export function Routes(){
   //const {user} = useAuth()

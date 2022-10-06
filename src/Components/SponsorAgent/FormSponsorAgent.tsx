@@ -47,7 +47,7 @@ const style = StyleSheet.create({
   moneyInput:{
     flex:1,
     fontSize:20,
-    backgroundColor:"green",
+    backgroundColor:"#3B8C6E",
     color:"white",
     alignItems:"center",
     justifyContent:'center',
@@ -77,7 +77,7 @@ const style = StyleSheet.create({
   choiceUnique:{
     flex:1,
     fontSize:20,
-    backgroundColor:"green",
+    backgroundColor:"#3B8C6E",
     color:"white",
     alignItems:"center",
     justifyContent:'center',
@@ -91,28 +91,29 @@ const style = StyleSheet.create({
     flex:1,
     fontSize:20,
     backgroundColor:"white",
-    color:"green",
+    color:"#3B8C6E",
     textAlign:'center',
     textAlignVertical:"center",
-    borderColor:'green',
+    borderColor:'#3B8C6E',
     borderWidth:1,
     borderTopLeftRadius:6,
     borderBottomLeftRadius:6
   },
   buttonChoice:{
-    flex:1
+    flex:1,
+    marginHorizontal:10
   },
   buttonToSponsor:{
     width:"70%",
     marginTop:70,
     padding:10,
-    borderColor:'green',
-    color:'green',
+    borderColor:'#3B8C6E',
+    color:'#3B8C6E',
     borderWidth:1,
     textAlign:'center'
   },
   textButtonTosponsor:{
-    color:"green",
+    color:"#3B8C6E",
     textAlign:'center',
   }
 

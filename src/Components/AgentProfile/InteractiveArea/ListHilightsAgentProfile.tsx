@@ -1,16 +1,31 @@
 import {View, Text, StyleSheet, FlatList,Image, Pressable} from 'react-native'
-import { highlights } from '../../../dummys/images'
-export default function ListHighlightAgentProfile(){
+import { highlights, icons, images } from '../../../dummys/images'
+
+interface itemProps{
+  file:any
+  
+}
+interface DataProps{
+  images:itemProps[]
+  
+}
+interface namesProps{
+  names:string[]
+}
+
+export default function ListHighlightAgentProfile({images}:DataProps){
+  //console.log(images)
   return(
     <View>
       <Text style={{marginHorizontal:20}}>Highlights</Text>
-      <FlatList showsHorizontalScrollIndicator={false} data={highlights} renderItem={(itemData)=>
+      <FlatList showsHorizontalScrollIndicator={false} data={images} renderItem={(DataItem)=>
       <Pressable style={({pressed})=>[pressed ? [style.pressed, style.blockHighlight]:style.blockHighlight]}>
         <Image style={[style.img]} 
-        source={itemData.item.file} />
+        source={DataItem.item.file} resizeMode='contain' 
+        />
       </Pressable>
       }
-      keyExtractor={(item)=> item.file.toString()}
+      keyExtractor={(item)=> item.file}
       horizontal={true}
       />
     </View>
@@ -33,7 +48,7 @@ const style= StyleSheet.create({
   },
   pressed:{
     opacity:0.5,
-    backgroundColor:'green',
+    backgroundColor:'#89D99D',
     height:200
   }
 })

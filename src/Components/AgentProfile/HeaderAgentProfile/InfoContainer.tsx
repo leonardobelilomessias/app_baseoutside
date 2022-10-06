@@ -56,7 +56,7 @@ const style = StyleSheet.create({
     marginRight:15
   },
   styleButtonSponsor:{
-    borderColor:'green',
+    borderColor:'#3B8C6E',
     padding:5,
     paddingHorizontal:15,
     marginRight:15,
@@ -67,7 +67,7 @@ const style = StyleSheet.create({
     flex:1
   },
   buttonColab:{
-    backgroundColor:'green',
+    backgroundColor:'#3B8C6E',
     padding:5,
     paddingHorizontal:15,
     marginRight:15,
@@ -77,6 +77,6 @@ const style = StyleSheet.create({
     color:'white'
   },
   textButtonSelected:{
-    color:'green'
+    color:'#3B8C6E'
   }
 })

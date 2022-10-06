@@ -33,7 +33,7 @@ const style = StyleSheet.create({
   text:{
     fontSize:16,
     marginBottom:10,
-    color:'green'
+    color:'#1E5959'
   }
 
 })

@@ -30,7 +30,7 @@ const style = StyleSheet.create({
     marginHorizontal:1
   },
   isSelected:{
-    backgroundColor:'green',
+    backgroundColor:'#3B8C6E',
     color:'white'
   },
   textSelected:{

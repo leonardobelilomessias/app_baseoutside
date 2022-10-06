@@ -26,7 +26,7 @@ const style = StyleSheet.create({
     flex:1,
   },
   container2:{
-    backgroundColor:'green'
+    backgroundColor:'#3B8C6E'
   }
 
 })
