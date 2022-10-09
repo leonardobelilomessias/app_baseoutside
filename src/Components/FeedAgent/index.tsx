@@ -15,7 +15,7 @@ export function FeedAgent(){
       <ButtonMenuAgentProfile isActive={selectMenu}  onPress={()=>{SetSelectMenu('Mission')}} title='Mission'/>
       <ButtonMenuAgentProfile isActive={selectMenu}  onPress={()=>{SetSelectMenu('Action')}} title='Action'/>
     </View>
-    <ListHighlightAgentProfile images={icons}/>
+ 
       <ContainerFeedAgent/>
     </View>
     </ScrollView>

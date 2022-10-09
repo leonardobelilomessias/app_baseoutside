@@ -4,6 +4,7 @@ import HomeScreen from '../screens/Agent/AgentProfile'
 import { SignIn } from '../screens/SignIn'
 import { TabNavigation } from './TabNavigation.routes'
 import { StackNavigation } from './StackNavigation.routes'
+import { DrawerNavigations } from './DrawerNavigation.routes'
 
 const {Navigator,Screen} = createNativeStackNavigator()
 
