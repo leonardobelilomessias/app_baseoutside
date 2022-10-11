@@ -1,6 +1,6 @@
-import { createContext,useState,useContext,ReactNode} from 'react'
-import { tableUsers } from '../dummys/fakeApi/tableAgent/infoAgent';
+import { createContext,useState,useContext,ReactNode, useEffect} from 'react'
 import { api } from '../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 interface User{
   id_agent_token:string
@@ -19,7 +19,9 @@ interface User{
 interface AuthContextData{
 user:User;
 signIn:({email,password}:SignInProps)=> void;
-loading?:boolean
+loading?:boolean;
+agentAuthenticate:User
+autoriztionToken?:string
 }
 
 interface AuthProviderProps{
@@ -39,29 +41,37 @@ interface AutorizationApi{
 export const AuthContext = createContext({} as AuthContextData)
 
 function AuthProvider({children}:AuthProviderProps){
-  const [user,setUser] = useState<User>({} as User)
+  const [user,setUser] = useState<User>({} as  User)
   const [loading,setLoading] = useState(false)
+  const [agentAuthenticate,setAgentAuthenticate]  = useState({} as User)
+  const [autoriztionToken,setAutorizationToken] = useState('')
+  async function getData(){
+    const info = await AsyncStorage.getItem('@base_outside:profile_agent')
+    const getToken = await AsyncStorage.getItem('@base_outside:token_agent')
+    setAutorizationToken(JSON.parse(getToken as string))
+    setAgentAuthenticate(JSON.parse(info as string))
+    
+  }
+  useEffect(()=>{
+    getData()
+  },[])
+  
   async function signIn({email,password}:SignInProps){
     try{
       setLoading(true)
-     // console.log(email,password)
-      //const response =   await api.post('/sessions',{email:email,password:password})
-     // const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:email.trim(),password:password})).data 
-      //console.log(token)
-
-     // const infoAgent = await api.post('/agent/findByName',{name:agent.name})
-     const agent= {
-      id_agent_token:'string',
-      id: 'string',
-      email:' string',
-      name: 'Agent Perfil',
-      user_name: 'string',
-      description:'mydescription',
-    }
-    const agents = tableUsers[0]
-    setUser(agents)
-      
-
+      const response =   await api.post('/sessions',{email:"leo@email",password:'123'})
+      //const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:email.trim(),password:password})).data 
+      const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:"leo@email",password:'123'})).data 
+      const infoAgent = await api.post('/agent/findByName',{name:agent.name})
+      try{
+        if(token) AsyncStorage.setItem('@base_outside:token_agent',JSON.stringify(token))
+        if(agent) AsyncStorage.setItem('@base_outside:profile_agent',JSON.stringify(infoAgent.data))
+ 
+      }catch(e){
+        throw e
+      }
+    const agentInfoProfile = infoAgent.data
+    setUser(agentInfoProfile)
 
     }catch(e:any){
       console.log(e)
@@ -71,7 +81,7 @@ function AuthProvider({children}:AuthProviderProps){
     }
   }
   return (
-    <AuthContext.Provider value={{user,signIn,loading}}>
+    <AuthContext.Provider value={{user,signIn,loading, agentAuthenticate,autoriztionToken}}>
       {children}
     </AuthContext.Provider>
     )

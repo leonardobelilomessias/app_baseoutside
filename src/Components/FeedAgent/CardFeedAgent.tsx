@@ -1,16 +1,22 @@
 import { View,StyleSheet,Text ,Image} from "react-native";
-
-export function CardFeedAgent(){
+const url = 'http://192.168.0.43:3333/PhotosPublications/'
+const profile= 'http://192.168.0.43:3333/Agent/'
+interface Props{
+  img:string,
+  name?:string
+  img_profile?:string,
+  description?:string
+}
+export function CardFeedAgent({img,name,img_profile,description}:Props){
   return(
     <>
     <View style={style.container}>
       <View style={style.header}>
-        <Image style={style.image} source={require('../../assets/images/highlights/vl5.jpg')}/>
-        <Text style={style.textHeader}>Soldiers Soliderity</Text>
+        <Image style={style.image} source={{uri:`${profile}${img_profile}` }}/>
+        <Text style={style.textHeader}>{name}</Text>
       </View>
-      <Image style={style.imagePublication} source={require('../../assets/images/highlights/vl6.jpg')}/>
-      <Text >We have the privilege of contribuite with change of the word. Then give us best to improve 
-        of lifes of all humanity.
+      <Image style={style.imagePublication}resizeMode="center"  source={{uri:`${url}${img}` }}/>
+      <Text style={style.description} >{description}
       </Text>
     </View>
     </>
@@ -19,6 +25,7 @@ export function CardFeedAgent(){
 
 const style = StyleSheet.create({
   container:{
+    flex:1,
     width:'95%',
     backgroundColor:"white",
     height:370,
@@ -45,5 +52,8 @@ const style = StyleSheet.create({
   imagePublication:{
     width:'100%',
     height:250
+  },
+  description:{
+  marginLeft:8,
   }
 })

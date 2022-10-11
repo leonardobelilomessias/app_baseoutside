@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { View ,Text, StyleSheet} from "react-native";
-import fakeApi from "../../../dummys/fakeApi";
+import {db_outside} from "../../../dummys/fakeApi";
 
 
 export default function DataTopHeaderProfileAgent(){
   ''.length
-  const api:any= fakeApi.db_outside
-   const missions = api[0].tb_missions
-   const user = api[0].tableUsers[0]
-   const actions = api[0].tb_actions
-   const tasks = api[0].tb_task_agent
-   const colabs= api[0].tb_colabs_agent
+  const api:any= db_outside
+   const missions = Array(5)
+   const user = Array(6)
+   const actions = Array(7)
+   const tasks = Array(14)
+   const colabs= Array(15)
 
 
   return (

@@ -6,17 +6,17 @@ import ButtonMenuAgentProfile from '../AgentProfile/InteractiveMenuAgentProfile/
 import ContainerFeedAgent from './ContainerFeedAgent';
 
 export function FeedAgent(){
-  const [selectMenu,SetSelectMenu] = useState('Agent')
+  const [selectMenu,SetSelectMenu] = useState('Colab')
   return(
     <ScrollView>
     <View style={style.container}>
     <View style={style.menuContainer}>
-      <ButtonMenuAgentProfile  isActive={selectMenu} onPress={()=>{SetSelectMenu('Agent')}} title='Agent'/>
+      <ButtonMenuAgentProfile  isActive={selectMenu} onPress={()=>{SetSelectMenu('Colab')}} title='Colab'/>
       <ButtonMenuAgentProfile isActive={selectMenu}  onPress={()=>{SetSelectMenu('Mission')}} title='Mission'/>
       <ButtonMenuAgentProfile isActive={selectMenu}  onPress={()=>{SetSelectMenu('Action')}} title='Action'/>
     </View>
  
-      <ContainerFeedAgent/>
+      <ContainerFeedAgent selectMenu={selectMenu}/>
     </View>
     </ScrollView>
   )
