@@ -8,9 +8,7 @@ interface Props extends PressableProps {
 }
 export default function ButtonMenuAgentProfile({title,isActive,onPress,...rest}:Props){
   const isActives = isActive === title ? true : false
-  function press(){
-    console.log('press2')
-  }
+
   return(
     <Pressable    style={style.styleButton}>
       <Pressable  onPress={()=>{onPress()}}   style={[style.stylePressableButton,isActives && style.isSelected]}>

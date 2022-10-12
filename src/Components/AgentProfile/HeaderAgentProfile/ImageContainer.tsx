@@ -1,10 +1,14 @@
 import { StyleSheet, View,Text,Image } from "react-native";
 
-
-export default function ImageContainer(){
+interface props{
+  photoProfile:string
+}
+const url = 'http://192.168.0.43:3333/PhotosPublications/'
+const profile= 'http://192.168.0.43:3333/Agent/'
+export default function ImageContainer({photoProfile}:props){
   return(
     <View style={style.container}>
-      <Image style={style.img} source={require("../../../assets/images/imgProfile.jpg")}/>
+      <Image style={style.img} source={{uri:`${profile}${photoProfile===null?'avatar.png':photoProfile}` }}/>
 
 
       <Text style={style.textVocation}>Sociology</Text>

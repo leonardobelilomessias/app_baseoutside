@@ -16,6 +16,7 @@ interface IFeedAgent{
 }
 export function FeedColab(){
   const {agentAuthenticate} = useAuth()
+
   const [feedagent,setFeedAgent] = useState<IFeedAgent[]>([])
   const[loading,setLoading] = useState(true)
 
@@ -32,7 +33,7 @@ export function FeedColab(){
     
     <View style={style.container}>
       {loading ?<ActivityIndicator color={"#16D129"}size={46}/>:<></>}
-      {feedagent.map(info=>(<CardFeedAgent key={info.url} name={info.name} description={info.description} img_profile={info.image_profile} img={info.url}/>))}
+      {feedagent.map(info=>(<CardFeedAgent key={info.url} name={info.name} idColab ={info.id_colab} description={info.description} img_profile={info.image_profile} img={info.url}/>))}
     </View>
  
   )

@@ -22,6 +22,7 @@ signIn:({email,password}:SignInProps)=> void;
 loading?:boolean;
 agentAuthenticate:User
 autoriztionToken?:string
+signOut:()=> void;
 }
 
 interface AuthProviderProps{
@@ -38,6 +39,9 @@ interface AutorizationApi{
     email:string;
   }
 }
+interface InfoAgent{
+ data:User
+}
 export const AuthContext = createContext({} as AuthContextData)
 
 function AuthProvider({children}:AuthProviderProps){
@@ -45,28 +49,24 @@ function AuthProvider({children}:AuthProviderProps){
   const [loading,setLoading] = useState(false)
   const [agentAuthenticate,setAgentAuthenticate]  = useState({} as User)
   const [autoriztionToken,setAutorizationToken] = useState('')
-  async function getData(){
+  async function getDataAgentStorage(){
     const info = await AsyncStorage.getItem('@base_outside:profile_agent')
     const getToken = await AsyncStorage.getItem('@base_outside:token_agent')
     setAutorizationToken(JSON.parse(getToken as string))
     setAgentAuthenticate(JSON.parse(info as string))
     
   }
-  useEffect(()=>{
-    getData()
-  },[])
+
   
   async function signIn({email,password}:SignInProps){
     try{
       setLoading(true)
-      const response =   await api.post('/sessions',{email:"leo@email",password:'123'})
-      //const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:email.trim(),password:password})).data 
       const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:"leo@email",password:'123'})).data 
-      const infoAgent = await api.post('/agent/findByName',{name:agent.name})
+      const infoAgent:InfoAgent = await api.post('/agent/findByName',{name:agent.name})
       try{
         if(token) AsyncStorage.setItem('@base_outside:token_agent',JSON.stringify(token))
         if(agent) AsyncStorage.setItem('@base_outside:profile_agent',JSON.stringify(infoAgent.data))
- 
+        setAgentAuthenticate(infoAgent.data)
       }catch(e){
         throw e
       }
@@ -80,8 +80,19 @@ function AuthProvider({children}:AuthProviderProps){
       setLoading(false)
     }
   }
+  async function signOut(){
+
+    AsyncStorage.removeItem('@base_outside:token_agent')
+    AsyncStorage.removeItem('@base_outside:profile_agent')
+    setAgentAuthenticate({} as User)
+    setUser({} as User)
+
+  }
+  useEffect(()=>{
+    getDataAgentStorage()
+  },[])
   return (
-    <AuthContext.Provider value={{user,signIn,loading, agentAuthenticate,autoriztionToken}}>
+    <AuthContext.Provider value={{user,signIn,loading, agentAuthenticate,autoriztionToken,signOut}}>
       {children}
     </AuthContext.Provider>
     )
@@ -91,4 +102,4 @@ function useAuth(){
   const context = useContext(AuthContext)
   return context
 }
-export{ AuthProvider,useAuth}
+export{ AuthProvider,useAuth,User}

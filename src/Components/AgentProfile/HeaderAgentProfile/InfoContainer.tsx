@@ -1,22 +1,28 @@
 import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
 import { View, StyleSheet,Text, Button, Pressable } from "react-native";
 import { useAuth } from "../../../hooks/auth";
+import { Feather } from '@expo/vector-icons'; 
+
 interface navigatiorPros{
   navigate:(string:string,screen:{screen:string}) => (string);
+  setOptions?:({})=>void
 }
 interface PropsInfoUser{
   user:any
 }
+
 export default function InfoContainer({user}:PropsInfoUser){
-  
+
   const navigation :navigatiorPros= useNavigation()
   function handleGetSponsor(){
+    
     navigation.navigate("Sponsor",{screen:"Sponsor"})
   }
   return(
     <View style={style.container}>
       <View style={style.styleTextContainer}>
-        <Text style={style.textName}>{user.name}</Text>
+        <Text style={style.textName}>{user.name} </Text>
           <Text>
             {user.description}
         </Text>
@@ -43,7 +49,10 @@ const style = StyleSheet.create({
   },
   textName:{
     fontSize:16,
-    fontWeight:"500"
+    fontWeight:"500",
+    alignContent:"space-between",
+    justifyContent:'space-between',
+    alignItems:'stretch'
   },
   containerButons:{
     marginTop:10,

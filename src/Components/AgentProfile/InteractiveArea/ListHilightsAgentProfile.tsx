@@ -14,7 +14,7 @@ interface namesProps{
 }
 
 export default function ListHighlightAgentProfile({images}:DataProps){
-  //console.log(images)
+
   return(
     <View>
       <Text style={{marginHorizontal:20}}>Highlights</Text>

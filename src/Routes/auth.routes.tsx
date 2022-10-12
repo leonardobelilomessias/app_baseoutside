@@ -5,23 +5,15 @@ import { SignIn } from '../screens/SignIn'
 import { TabNavigation } from './TabNavigation.routes'
 import { StackNavigation } from './StackNavigation.routes'
 import { DrawerNavigations } from './DrawerNavigation.routes'
+import { useAuth } from '../hooks/auth'
 
 const {Navigator,Screen} = createNativeStackNavigator()
 
 export function AuthRoutes(){
+  const {agentAuthenticate,user} = useAuth()
 return (  
+    
     <TabNavigation/>
+    
   )
 }
-
-
-export function AuthRoutesBackup(){
-  return (  
-    <Navigator defaultScreenOptions={{headerShown:true,headerTransparent:true, contentStyle:{backgroundColor:"white"}}} screenOptions={{contentStyle:{backgroundColor:"white"},headerShown:false}} >
-  
-      <Screen name='AgentProfile' component={HomeScreen}/>
-      <Screen name='Sponsor' component={GetSponsorAgent}/>
-  
-    </Navigator>
-    )
-  }

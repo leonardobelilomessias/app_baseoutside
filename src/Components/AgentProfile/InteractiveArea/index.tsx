@@ -6,11 +6,11 @@ interface PropsInteractiveArea{
   openModal:any
 }
 export default function InteractiveArea({openModal}:PropsInteractiveArea){
-  //const data = highlights.forEach(item=>(console.log(item)))
+
   return(
     <View style = {style.container}>
       <ButtonCardProfileAgent openModal={openModal}/>
-      <ListHighlightAgentProfile  images={highlights}/>
+      {/*<ListHighlightAgentProfile  images={highlights}/>*/}
     </View>
   )
 }

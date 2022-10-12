@@ -57,7 +57,7 @@ const style = StyleSheet.create({
     width:"80%"
   },
   buttonLogin:{
-    backgroundColor:"#16D129",
+    backgroundColor:"#3B8C6E",
     width:"80%",
     padding:10,
     alignItems:"center",
