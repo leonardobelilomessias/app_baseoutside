@@ -1,17 +1,19 @@
 import React from "react";
 import { View, FlatList,Image, StyleSheet, ImageBackground ,Pressable,Text} from "react-native";
 import { images } from "../../../../dummys/images";
+import { User } from "../../../../hooks/auth";
 import { ContainerJorney } from "./ContainerJourney";
 import { ContentExclusive } from "./ContentExclusive";
 import { InfoContent } from "./InfoContent";
 
 const mg = images
 interface contentPropos{
-  show:string
+  show:string,
+  agent:User
 }
-export default function ContentAgentProfile({show}:contentPropos){
+export default function ContentAgentProfile({show,agent}:contentPropos){
       if(show==='Exclusive') return <ContentExclusive/>
-      if(show ==='info') return <InfoContent/>
+      if(show ==='info') return <InfoContent agent={agent}/>
       if(show ==='Journey') return<ContainerJorney/>
       else return<></>
   

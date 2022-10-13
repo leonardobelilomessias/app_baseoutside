@@ -41,7 +41,7 @@ export default function AgentProfile(){
       <HeaderPofileAgent agent={agent }/>
       <InteractiveArea openModal={setIsVisibleModal}/>
       <ModalAgentProfile visibleModal={isVisibleModa} setStateModal={setIsVisibleModal}/>
-      <InteractiveMenuAgentProfile/>
+      <InteractiveMenuAgentProfile agent={agent}/>
       </>}
      
 

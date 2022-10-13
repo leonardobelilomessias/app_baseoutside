@@ -11,6 +11,8 @@ import { AuthRoutes } from './auth.routes'
 import { useAuth } from '../hooks/auth'
 import { Text } from 'react-native'
 import { EditAgentButon } from '../Components/MenuBotton/EditAgentButton'
+import { AreaExclusiveAgent } from '../screens/Agent/AreaExclusiveAgent'
+import { EditProfile } from '../screens/Agent/EdditProfile'
 
 const {Navigator,Screen} = createNativeStackNavigator()
 
@@ -21,6 +23,7 @@ return (
     <Screen name='ProfileAgent' options={{headerRight:({})=><EditAgentButon/>}} initialParams={{id_agent:agentAuthenticate.id}}  component={AgentProfile} />
     <Screen  name='AgentProfile'   options={{title:'Meu Perfil'}} initialParams={{id_agent:agentAuthenticate.id}}   component={HomeScreen}/>
     <Screen name='Sponsor' component={GetSponsorAgent}/>
+    <Screen name='EditAgent' component={EditProfile}/>
   </Navigator>
   )
 }
