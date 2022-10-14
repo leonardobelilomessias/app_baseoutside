@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import { Text } from "react-native"
 import {useEffect} from 'react'
+import { EditAgentProfile } from "../../../Components/EditAgentProfile"
 export function EditProfile(){
   const {setOptions} = useNavigation()
   useEffect(()=>{
@@ -8,6 +9,6 @@ export function EditProfile(){
     setOptions({title:'Edit Profile'})
   },[])
   return(<>
-  <Text>Edit profile</Text>
+    <EditAgentProfile/>
   </>)
 }

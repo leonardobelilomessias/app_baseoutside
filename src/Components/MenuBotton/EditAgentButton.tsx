@@ -18,12 +18,8 @@ export function EditAgentButon(){
   function show(){
     console.log(showButton)
     console.log( agentAuthenticate?.id)
-    navigate('Profile',{screen:'EditAgent'})
-   
-    
-  
+    navigate('Profile',{screen:'EditAgent',params:agentAuthenticate})
   }
-
   return(
     <>
     {showButton&& <Button title='editar' color={'#3B8C6E'} onPress={show}></Button>}

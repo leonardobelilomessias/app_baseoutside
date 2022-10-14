@@ -12,7 +12,7 @@ import { useAuth } from '../hooks/auth'
 import { Text } from 'react-native'
 import { EditAgentButon } from '../Components/MenuBotton/EditAgentButton'
 import { AreaExclusiveAgent } from '../screens/Agent/AreaExclusiveAgent'
-import { EditProfile } from '../screens/Agent/EdditProfile'
+import { EditProfile } from '../screens/Agent/EditProfile'
 
 const {Navigator,Screen} = createNativeStackNavigator()
 
