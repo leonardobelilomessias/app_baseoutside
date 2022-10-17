@@ -50,11 +50,12 @@ function AuthProvider({children}:AuthProviderProps){
   const [agentAuthenticate,setAgentAuthenticate]  = useState({} as User)
   const [autoriztionToken,setAutorizationToken] = useState('')
   async function getDataAgentStorage(){
+    setLoading(true)
     const info = await AsyncStorage.getItem('@base_outside:profile_agent')
     const getToken = await AsyncStorage.getItem('@base_outside:token_agent')
     setAutorizationToken(JSON.parse(getToken as string))
     setAgentAuthenticate(JSON.parse(info as string))
-    
+    setLoading(false)
   }
 
   
