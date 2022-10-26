@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { TextInput, StyleSheet,Text, View ,KeyboardAvoidingView} from "react-native";
-interface props{
+import { TextInput, StyleSheet,Text, View ,KeyboardAvoidingView, TextInputProps} from "react-native";
+interface props extends TextInputProps {
   fildName:string,
-  currentValue:string
+  currentValue?:string
+  
 }
-export function InputTextEditAgent({fildName, currentValue=''}:props){
+export function InputTextEditAgent({fildName, currentValue='', ...rest}:props){
   const [dataValue,setDataValue] = useState(currentValue)
   return(
     <KeyboardAvoidingView style={style.view}>
     <Text style={style.label}>{fildName}</Text>
-    <TextInput value={dataValue}  numberOfLines={fildName==='Description'?5:1}  onChangeText={ 
-      setDataValue} style={style.container}/>
+    <TextInput  {...rest} style={style.container}/>
     </KeyboardAvoidingView>
   )
 }
 
 const style = StyleSheet.create({
+
   container:{
     backgroundColor:'white',
     width:'100%',

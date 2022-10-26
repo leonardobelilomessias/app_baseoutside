@@ -53,6 +53,7 @@ function AuthProvider({children}:AuthProviderProps){
     setLoading(true)
     const info = await AsyncStorage.getItem('@base_outside:profile_agent')
     const getToken = await AsyncStorage.getItem('@base_outside:token_agent')
+    api.defaults.headers.common['Authorization'] = `Bearer ${{getToken}}`
     setAutorizationToken(JSON.parse(getToken as string))
     setAgentAuthenticate(JSON.parse(info as string))
     setLoading(false)
@@ -62,7 +63,9 @@ function AuthProvider({children}:AuthProviderProps){
   async function signIn({email,password}:SignInProps){
     try{
       setLoading(true)
-      const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email:"leo@email",password:'123'})).data 
+      const {token,agent} :AutorizationApi =   await (await api.post('/sessions',{email,password})).data 
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      
       const infoAgent:InfoAgent = await api.post('/agent/findByName',{name:agent.name})
       try{
         if(token) AsyncStorage.setItem('@base_outside:token_agent',JSON.stringify(token))

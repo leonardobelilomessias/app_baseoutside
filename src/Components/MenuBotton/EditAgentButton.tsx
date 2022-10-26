@@ -16,8 +16,6 @@ export function EditAgentButon(){
   const {navigate} = useNavigation<navigateProps>()
   const showButton = agentAuthenticate.id === params?.id_agent
   function show(){
-    console.log(showButton)
-    console.log( agentAuthenticate?.id)
     navigate('Profile',{screen:'EditAgent',params:agentAuthenticate})
   }
   return(

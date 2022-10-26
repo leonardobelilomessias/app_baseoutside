@@ -1,28 +1,51 @@
-import { View,StyleSheet ,KeyboardAvoidingView,ScrollView,Image} from "react-native";
+import { useState } from "react";
+import { View,StyleSheet ,KeyboardAvoidingView,ScrollView,Image, Alert} from "react-native";
 import { User } from "../../../hooks/auth";
+import { api } from "../../../services/api";
 import { ButtonHandleEditAgent } from "./ButtonHandleEditAgent";
 import { InputTextEditAgent } from "./InputTextEditAgent";
-
+import {useNavigation} from '@react-navigation/native'
 interface props{
   agent:User
 }
 const profile= 'http://192.168.0.43:3333/Agent/'
 export function  ContainerFormEditAgentProfile({agent}:props){
-  function handleSave(){
-    console.log('save')
+  const {goBack} = useNavigation()
+  const [name,setName]  = useState(agent.name)
+  const [description,setDescription] = useState(agent.description)
+  const [vocation,setVocation] = useState(agent.vocation)
+  const [userName,setUserName] = useState(agent.user_name)
+ 
+ 
+  async function handleSave(){
+    const info = {
+      id:agent.id,
+      name,
+      vocation,
+      description
+    }
+    try{
+     console.log(info) 
+      await api.patch('/agent',info)
+      goBack()
+  
+    }catch(e:any){
+      Alert.alert(e.message)
+    }
   }
   function handleCancel(){
-    console.log(agent.image_profile)
+    Alert.alert('cancelar')
 
   }
   return(
     <ScrollView style={style.scrollContainer}>
     <View style={style.container}>
     <Image style={style.img} source={{uri:`${profile}${agent.image_profile===null?'avatar.png':agent.image_profile}` }}/>
-        <InputTextEditAgent currentValue={agent.name} fildName="Name"/>
-        <InputTextEditAgent currentValue={agent.user_name} fildName="UserName"/>
-        <InputTextEditAgent currentValue={agent.vocation as string } fildName="Vocation" />
-        <InputTextEditAgent currentValue={agent.description as string } fildName="Description" />
+        <InputTextEditAgent  value={name} onChangeText={setName} fildName="Name"/>
+        <InputTextEditAgent value={userName} onChangeText={setUserName} fildName="UserName"/>
+        <InputTextEditAgent value={vocation} onChangeText={setVocation} fildName="Vocation" />
+        <InputTextEditAgent multiline={true} value={description!}  onChangeText={setDescription}
+        numberOfLines={5}fildName="Description" />
         <View style={style.buttonsContainer}>
         <ButtonHandleEditAgent onPress={handleSave} titleButton="Salvar"/>
         <ButtonHandleEditAgent onPress={handleCancel} titleButton="Cancelar"/>

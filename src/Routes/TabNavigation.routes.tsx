@@ -27,11 +27,11 @@ export function TabNavigation(){
 
     <Screen  name= "Monitor" options={{headerShown:false, headerLeft:()=><Ionicons style={{padding:15}} name='ios-menu-outline' size={30}/>,headerRight:()=><Text style={{padding:15}}>Settings</Text>,headerTitleAlign:"center", tabBarIcon:({color})=><Pressable onPress={()=> navigation.navigate("Monitor",{screen:'Base Outside'})}><LabelMenuBotton nameLabel='Monitor' color={color}  icon='ios-home-sharp'/></Pressable> }} component={DrawerNavigations} />
 
-    <Screen name='Search' options={{tabBarIcon:({color})=><LabelMenuBotton nameLabel='Search' color={color}/>}} component={Search} />
-
-    <Screen name='Share' options={{tabBarShowLabel:false,tabBarIcon:({color})=><LabelMenuBotton nameLabel='Share' color={color} icon='ios-share-outline' />, tabBarIconStyle:{backgroundColor:'green'}}} component={Share}/>
 
     <Screen name='Exclusive' options={{ tabBarShowLabel:false,tabBarIcon:({color})=><LabelMenuBotton nameLabel='Exclusive' color={color} icon='ios-clipboard-outline'/>}} component={AreaExclusiveAgent}/>
+    <Screen name='Share' options={{tabBarShowLabel:false,tabBarIcon:({color})=><LabelMenuBotton nameLabel='Share' color={color} icon='ios-share-outline' />, tabBarIconStyle:{backgroundColor:'green'}}} component={Share}/>
+
+    <Screen name='Search' options={{tabBarIcon:({color})=><LabelMenuBotton nameLabel='Search' color={color}/>}} component={Search} />
 
     <Screen name='Profile' options={{ headerShown:false,tabBarShowLabel:false,tabBarIcon:({color,focused})=>
     <Pressable onPress={()=>{ dispare()}}>
