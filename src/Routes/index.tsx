@@ -12,7 +12,7 @@ export function Routes() {
         <Box flex={1}>
 
             <NavigationContainer >
-                <AppRoutes />
+                <AuthRoutes/>
             </NavigationContainer>
         </Box>
     )

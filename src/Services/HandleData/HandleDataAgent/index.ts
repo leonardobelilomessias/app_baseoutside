@@ -44,10 +44,14 @@ class HandleDataAgent {
         return response
     }
     async fetchDataAgent({name}:{name:string}){
-        const response = await this.service.fetchDataLogin({name})
+        const response = await this.service.fetchDataAgent({name})
         return response
     }
 
+    async authenticateAgent({email,password}:{email:string ,password:string}){
+        const response = await this.service.authenticate({email,password})
+        return response
+    }
 
 }
 export {HandleDataAgent}

@@ -16,5 +16,14 @@ interface FindAgentDTO{
         state:number
     
 }
+interface FormatResponseAuthenticate {
+        token: string
+        agent: {
+            name: string,
+            email: string
+        },
+        refresh_token: string
+    }
+    
 
-export{FindAgentDTO}
+export{FindAgentDTO, FormatResponseAuthenticate}

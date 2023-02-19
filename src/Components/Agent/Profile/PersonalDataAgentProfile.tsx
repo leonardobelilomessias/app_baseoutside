@@ -1,25 +1,33 @@
-import { HStack,Button, VStack, Box, Image, Text } from "native-base";
+import { HStack,Button, VStack, Box, Image, Text, Pressable } from "native-base";
 import { useDataAgent } from "../../../Hooks/UserContext";
 import User from '../../../assets/images/userIcon.png'
 import { useNavigation } from "@react-navigation/native";
 import { NavigatotionAgentProps } from "../../../Routes/StackNavigation";
+import { Feather } from '@expo/vector-icons'; 
 function PersonalDataAgentProfile() {
-    const dataAgent = useDataAgent()
+
+    const {dataAgent} = useDataAgent()
+    const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
+    //console.log(dataAgent)
     const {navigate} = useNavigation<NavigatotionAgentProps>()
     return ( 
     <>
             <HStack space={'2'} p='4' m='2' bg='white' rounded={10} shadow='2' >
                     <VStack alignItems={'center'}>
                         <Box h='100' w='100' rounded={'full'}   >
-                        <Image source={User }  resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user'></Image>
+                        <Image source={{uri: dataAgent.image_profile?`${bucketS3}/${dataAgent?.image_profile}`:User}}  resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user'></Image>
                         </Box>
-                        <Text fontFamily={'heading'} fontSize='16'>field</Text>
-                        <Text color={'gray.400'}>Status</Text>
+                        <Text fontFamily={'heading'} fontSize='16'>{dataAgent.vocation}</Text>
+                        <Text color={'gray.400'}>{dataAgent.state===0?'iniciante':'experiente'}</Text>
                     </VStack>
 
                     <VStack flex={1}  >
-                        
+                        <HStack alignContent={"space-between"} justifyContent='space-between' >
                         <Text fontFamily={'heading'} fontSize='20'>{dataAgent.name}</Text>
+                            <Pressable onPress={()=>{navigate('EditProfile',{dataAgent})}}>
+                            <Feather name="edit" size={20} color="black" />
+                            </Pressable>
+                        </HStack>
                         <Box h='20'>
                             <Text > {dataAgent.description} </Text>
                         </Box>
