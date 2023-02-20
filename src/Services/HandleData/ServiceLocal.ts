@@ -1,6 +1,6 @@
 import { CreateAgentDTO } from "../../Dtos/AgentDTO/CreateAgentDTO";
-import { FindAgentDTO } from "../../Dtos/AgentDTO/DataAgentDTO";
-import { FormatResponseAuthenticate, FormatServiceAgent } from "./HandleDataAgent/FormatsService/FormatServiceAgent";
+import { FindAgentDTO, FormatResponseAuthenticate } from "../../Dtos/AgentDTO/DataAgentDTO";
+import {  FormatServiceAgent } from "./HandleDataAgent/FormatsService/FormatServiceAgent";
 import { resolve, } from 'path'
 import bse from '../../assets/images/imgprofile.jpg'
 
@@ -21,6 +21,12 @@ const dataAgent = {
 }
 
 class ServiceLocal implements FormatServiceAgent {
+    setTokenHeader(token: string): void {
+        return
+    }
+    findDataAgentById( id_agent :string): Promise<FindAgentDTO> {
+        throw new Error("Method not implemented.");
+    }
     authenticate({ email, password }: { email: string; password: string; }): Promise<FormatResponseAuthenticate> {
         throw new Error("Method not implemented.");
     }

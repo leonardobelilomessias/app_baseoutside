@@ -1,47 +1,47 @@
-import { HStack,Button, VStack, Box, Image, Text, Pressable } from "native-base";
-import { useDataAgent } from "../../../Hooks/UserContext";
+import { HStack, Button, VStack, Box, Image, Text, Pressable } from "native-base";
+import { useDataAgent } from "../../../Contexts/UserContext";
 import User from '../../../assets/images/userIcon.png'
 import { useNavigation } from "@react-navigation/native";
 import { NavigatotionAgentProps } from "../../../Routes/StackNavigation";
-import { Feather } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons';
 function PersonalDataAgentProfile() {
 
-    const {dataAgent} = useDataAgent()
+    const { dataAgent } = useDataAgent()
     const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
     //console.log(dataAgent)
-    const {navigate} = useNavigation<NavigatotionAgentProps>()
-    return ( 
-    <>
+    const { navigate } = useNavigation<NavigatotionAgentProps>()
+    return (
+        <>
             <HStack space={'2'} p='4' m='2' bg='white' rounded={10} shadow='2' >
-                    <VStack alignItems={'center'}>
-                        <Box h='100' w='100' rounded={'full'}   >
-                        <Image source={{uri: dataAgent.image_profile?`${bucketS3}/${dataAgent?.image_profile}`:User}}  resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user'></Image>
-                        </Box>
-                        <Text fontFamily={'heading'} fontSize='16'>{dataAgent.vocation}</Text>
-                        <Text color={'gray.400'}>{dataAgent.state===0?'iniciante':'experiente'}</Text>
-                    </VStack>
+                <VStack alignItems={'center'}>
+                    <Box h='100' w='100' rounded={'full'}   >
+                        <Image source={{ uri: dataAgent.image_profile ? `${bucketS3}/${dataAgent?.image_profile}` : User }} resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user'></Image>
+                    </Box>
+                    <Text fontFamily={'heading'} fontSize='16'>{dataAgent.vocation}</Text>
+                    <Text color={'gray.400'}>{dataAgent.state === 0 ? 'iniciante' : 'experiente'}</Text>
+                </VStack>
 
-                    <VStack flex={1}  >
-                        <HStack alignContent={"space-between"} justifyContent='space-between' >
+                <VStack flex={1}  >
+                    <HStack alignContent={"space-between"} justifyContent='space-between' >
                         <Text fontFamily={'heading'} fontSize='20'>{dataAgent.name}</Text>
-                            <Pressable onPress={()=>{navigate('EditProfile',{dataAgent})}}>
+                        <Pressable onPress={() => { navigate('EditProfile', { dataAgent }) }}>
                             <Feather name="edit" size={20} color="black" />
-                            </Pressable>
-                        </HStack>
-                        <Box h='20'>
-                            <Text > {dataAgent.description} </Text>
-                        </Box>
-                        <HStack space={2}>
-                            <Button size='sm'  bgColor={'green.500'} >
-                                colab
-                            </Button>
-                            <Button flex={1} size='sm' bgColor={'green.500'} onPress={()=>{navigate('Sponsor')}}>
-                                Sponsor
-                            </Button>
-                        </HStack>
-                    </VStack>
-                </HStack>
-    </> );
+                        </Pressable>
+                    </HStack>
+                    <Box h='20'>
+                        <Text > {dataAgent.description} </Text>
+                    </Box>
+                    <HStack space={2}>
+                        <Button size='sm' bgColor={'green.500'} >
+                            colab
+                        </Button>
+                        <Button flex={1} size='sm' bgColor={'green.500'} onPress={() => { navigate('Sponsor') }}>
+                            Sponsor
+                        </Button>
+                    </HStack>
+                </VStack>
+            </HStack>
+        </>);
 }
 
 export default PersonalDataAgentProfile;

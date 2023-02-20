@@ -4,23 +4,23 @@ import { Use } from "react-native-svg";
 import ContentDataAgentProfile from "../../Components/Agent/Profile/ContentDataAgentProfile";
 import DataHeaderProfileAgent from "../../Components/Agent/Profile/DataHeaderProfile";
 import PersonalDataAgentProfile from "../../Components/Agent/Profile/PersonalDataAgentProfile";
-import { useDataAgent } from "../../Hooks/UserContext";
+import { useDataAgent } from "../../Contexts/UserContext";
 
 
 
-export function Profile(){
+export function Profile() {
     const dataAgent = useDataAgent()
 
-    return(
+    return (
         <>
             <VStack >
                 {/*  Header on top with data  */}
-                <DataHeaderProfileAgent/>
-            {  /*  Personal data of agent authenticaded  */}
-                <PersonalDataAgentProfile/>
+                <DataHeaderProfileAgent />
+                {  /*  Personal data of agent authenticaded  */}
+                <PersonalDataAgentProfile />
                 {  /*  Geral data of agent authenticaded  */}
-                <ContentDataAgentProfile/>
-                </VStack>
+                <ContentDataAgentProfile />
+            </VStack>
         </>
     )
 

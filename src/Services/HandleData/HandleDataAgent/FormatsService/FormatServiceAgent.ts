@@ -10,5 +10,8 @@ interface FormatServiceAgent {
     delete({ url, data }: { url: string, data: any }): Promise<any>
     edit({ url, data }: { url: string, data: any }): Promise<any>
     authenticate({ email, password }: { email: string, password: string }): Promise<FormatResponseAuthenticate|void >
+    findDataAgentById(id_agent:string):Promise<FindAgentDTO>
+    setTokenHeader(token:string):void
+    
 }
 export { FormatServiceAgent }

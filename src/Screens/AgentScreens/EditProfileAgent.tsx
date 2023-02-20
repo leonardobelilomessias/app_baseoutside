@@ -1,11 +1,14 @@
 import { useRoute, RouteProp } from "@react-navigation/native";
-import { Box, Button, Container, FormControl, Image, Input, Text, TextArea, VStack, Pressable } from "native-base";
+import { Box, Button, Container, FormControl, Image, Input, Text, TextArea, VStack, Pressable, Spinner } from "native-base";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { FindAgentDTO } from "../../Dtos/AgentDTO/DataAgentDTO";
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import User from '../../assets/images/userIcon.png'
+import * as ImagePicker  from  'expo-image-picker'
+import { LoadingSpinner } from "../../Components/Shared/LoadingSpinner";
+import { AxiosApi } from "../../Services/HandleData/ProvideServices/axios";
 
 
 type FormDataProps = {
@@ -21,10 +24,14 @@ const editSchema = yup.object({
     name: yup.string().required("Informe o nome válido !")
 
 })
+
+
 export function EditProfileAgent() {
+    const [photLoading,setPhotoLoading]=useState(false)
     const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
     const route = useRoute()
     const { dataAgent } = route?.params as ParamsRoute
+    const [image,setImage] = useState(`${bucketS3}/${dataAgent?.image_profile}`)
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
         defaultValues: {
             name: dataAgent.name,
@@ -38,18 +45,61 @@ export function EditProfileAgent() {
         
     }
 
+    async function handleImageUser(){
+        setPhotoLoading(true)
+            const photoselected = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes:ImagePicker.MediaTypeOptions.Images,
+                quality:1,
+                aspect:[4,4],
+                allowsEditing:true,
+            
+            
+        }).then((photoselected)=>{
+            setPhotoLoading(true)
+            if (!photoselected.canceled) {
+                setImage(photoselected.assets[0].uri);
+                const fileExtension = photoselected.assets[0].uri.split('.').pop()
+                const photoFile ={
+                    name:`${dataAgent.user_name}.${fileExtension}`.toLocaleLowerCase(),
+                    uri:photoselected.assets[0].uri,
+                    type:`${photoselected.assets[0].type}/${fileExtension}`
+                }as any 
+                const userPhotoUploadForm = new FormData()
+                userPhotoUploadForm.append('image_profile',photoFile)
+                console.log(photoFile)
+                AxiosApi.patch('/agent/imageProfile',userPhotoUploadForm,{
+                    headers:{
+                        'Content-Type':'multipart/form-data'
+                    }
+                })
+            //return photoselected
+            }
+            
+            
 
+        }).catch((error)=>{
+            throw error
+        }).finally(()=>{setPhotoLoading(false)})
+    
+        //console.log(photoselected)
+        setPhotoLoading(false)
+    }
+    
 
     return (
         <>
-            <VStack p='5' alignItems={'center'} flex={1}>
+            <VStack p='5' alignItems={'center'} flex={1} bgColor='white'>
                 <VStack my={5} alignItems={'center'}>
                     <Box h='100' w='100' rounded={'full'}   >
-                        <Image source={{ uri: dataAgent.image_profile ? `${bucketS3}/${dataAgent?.image_profile}` : User }} resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user' />
+                        {photLoading?
+                        <LoadingSpinner/>
+                        :
+                        <Image source={{ uri: dataAgent.image_profile ? image : User }} resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user' />
+                        }
 
 
                     </Box>
-                    <Pressable>
+                    <Pressable onPress={()=>handleImageUser()}>
                         <Text mb='6' color={'green.400'} fontSize={'md'}>Trocar Foto</Text>
                     </Pressable>
                 </VStack>

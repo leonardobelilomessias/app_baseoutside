@@ -28,9 +28,14 @@ export function AppRoutes() {
     const { colors } = useTheme()
     return (
         <Navigator screenOptions={{ tabBarShowLabel: false, }}>
-            <Screen name='Home' component={StackNavigation} options={{ tabBarIcon: ({ color, focused }) => (<Entypo name="home" size={24} color={focused ? colors.green['500'] : color} />), headerShown: false, }} />
+            <Screen name='Home' component={StackNavigation} options={{ tabBarIcon: ({ color, focused }) => (
+            <Entypo name="home" size={24} color={focused ? colors.green['500'] : color} />
+            ), headerShown: false, }} />
+
             <Screen name='Search' component={AgentSearch} options={{ tabBarIcon: ({ color, focused }) => (<AntDesign name="search1" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
+
             <Screen name='Share' component={Home} options={{ tabBarIcon: ({ color, focused }) => (<AntDesign name="sharealt" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
+
             <Screen name='Profile' component={Profile} options={{ tabBarIcon: ({ color, focused }) => (<FontAwesome5 name="user-circle" size={24} color={focused ? colors.green['500'] : color} />), headerShown: false }} />
         </Navigator>
     )
