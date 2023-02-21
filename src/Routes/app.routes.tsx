@@ -10,7 +10,11 @@ import { AntDesign } from '@expo/vector-icons';
 import { StackNavigation } from './StackNavigation';
 import { AgentSearch } from '../Screens/AgentScreens/AgentSearch';
 import { Home } from '../Screens/AgentScreens/Home';
-import { Profile } from '../Screens/AgentScreens/ProfileAgent';
+import { ProfileAgent } from '../Screens/AgentScreens/ProfileAgent';
+import { Ionicons } from '@expo/vector-icons';
+import { PanelControllerAgent } from '../Screens/AgentScreens/PanelControllerAgent';
+import { Share } from '../Screens/AgentScreens/Share';
+
 
 
 type AppRoutes = {
@@ -18,6 +22,7 @@ type AppRoutes = {
     Profile: undefined
     Search: undefined
     Share: undefined
+    PanelControl:undefined
 }
 
 const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>()
@@ -34,9 +39,11 @@ export function AppRoutes() {
 
             <Screen name='Search' component={AgentSearch} options={{ tabBarIcon: ({ color, focused }) => (<AntDesign name="search1" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
 
-            <Screen name='Share' component={Home} options={{ tabBarIcon: ({ color, focused }) => (<AntDesign name="sharealt" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
+            <Screen name='Share' component={Share} options={{ tabBarIcon: ({ color, focused }) => (<AntDesign name="sharealt" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
 
-            <Screen name='Profile' component={Profile} options={{ tabBarIcon: ({ color, focused }) => (<FontAwesome5 name="user-circle" size={24} color={focused ? colors.green['500'] : color} />), headerShown: false }} />
+            <Screen name='PanelControl' component={PanelControllerAgent} options={{ tabBarIcon: ({ color, focused }) => (<Ionicons  name="md-game-controller-outline" size={24} color={focused ? colors.green['500'] : color} />), headerShown: false }} />
+
+            <Screen name='Profile' component={ProfileAgent} options={{ tabBarIcon: ({ color, focused }) => (<FontAwesome5 name="user-circle" size={24} color={focused ? colors.green['500'] : color} />), headerShown: false }} />
         </Navigator>
     )
 }

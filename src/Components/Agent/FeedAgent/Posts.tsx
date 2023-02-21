@@ -1,9 +1,15 @@
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Box, FlatList, HStack, Image, Pressable, Text, VStack } from "native-base";
 import { useEffect, useRef, useState } from "react";
 import  example from '../../../assets/images/BaseOutside.png'
 import ImageUser from '../../../assets/images/user.png'
 import Volunter from '../../../assets/images/vlun.jpg'
+import { useDataAgent } from "../../../Contexts/UserContext";
+import { NavigatotionAgentProps } from "../../../Routes/StackNavigation";
 import { AxiosApi } from "../../../Services/HandleData/ProvideServices/axios";
+import { AppError } from "../../../Utils/AppError";
+import { LoadingSpinner } from "../../Shared/LoadingSpinner";
 type MenuProps={
     selectedListRender:(listSelected:string)=>void
 }
@@ -15,18 +21,56 @@ type PostProps={
     avatar:string | null
 }
 
-const dataPostColab= [
-    {id:"01",name:'Colab example',photo:Volunter, description:"Hoje começamos mais um projeto incrivel que se cham base outside. Esperamos que muitas pessoas possam ter um experiencia incrivel ao seguir o seu coraçao e sua vocação.",avatar:'18aca2f550ee7887f8ca83162f173098_leo.jpeg'},
-    {id:"02",name:'Colab example',photo:Volunter, description:"Hoje começamos mais um projeto incrivel que se cham base outside. Esperamos que muitas pessoas possam ter um experiencia incrivel ao seguir o seu coraçao e sua vocação.",avatar:null}
+type ResponseColabProps={
+    data:{
+        name:string;
+        id_colab:string;
+        image_profile:string;
+        description:string;
+        url:string
+    }[]
+}
+type NavigateAgentProps={
 
-]
+}
+
+
 const dataPostSponsors= [
-{id:"sponsor01",name:'Spónsor example',photo:example, description:"Hoje começamos mais um projeto incrivel que se cham base outside. Esperamos que muitas pessoas possam ter um experiencia incrivel ao seguir o seu coraçao e sua vocação.",avatar:null},
-{id:"sponsor2",name:'Sponsor',photo:example, description:"Hoje começamos mais um projeto incrivel que se cham base outside. Esperamos que muitas pessoas possam ter um experiencia incrivel ao seguir o seu coraçao e sua vocação.",avatar:null}
+{id: "c7d2de4f-b2ad-4acc-a1dc-d7def44c53e",name:'Spónsor example',photo:"c7d23a8255f95220ffe55ad97b138aa6_vl5.jpg", description:"Hoje começamos mais um projeto incrivel que se cham base outside. Esperamos que muitas pessoas possam ter um experiencia incrivel ao seguir o seu coraçao e sua vocação.",avatar:null},
+{id:"c7d2de4f-b2ad-4acc-a1dc-d7def44c53e",name:'Sponsor',photo:"c7d23a8255f95220ffe55ad97b138aa6_vl5.jpg", description:"Hoje começamos mais um projeto incrivel que se cham base outside. Esperamos que muitas pessoas possam ter um experiencia incrivel ao seguir o seu coraçao e sua vocação.",avatar:null}
 
 ]
 export function Posts() {
     
+    const [loadingPost,setLoadingPost]=useState(false)
+    const [dataPostColab,setDataPostColab]= useState([] as PostProps[])
+    const {dataAgent} = useDataAgent()
+
+    async function fetchFeed(){
+        try{
+            setLoadingPost(true)
+            //console.log(dataAgent.id)
+            const  reponse :ResponseColabProps  = await AxiosApi.get('agent/feedColab',{params:{
+                id_agent:dataAgent.id
+            }})
+            const colabFormated = reponse.data.map((colab)=>{
+                return {
+                    id:colab.id_colab,
+                    name:colab.name,
+                    photo:colab.url,
+                    description:colab.description,
+                    avatar:colab.image_profile
+                }
+            })
+            setDataPostColab(colabFormated)
+            return colabFormated
+        }catch(e){
+            console.log(e )
+        }finally{
+            setLoadingPost(false)
+
+        }
+    }   
 
     const [postsRederized,setPostRenderized] = useState([...dataPostColab,...dataPostSponsors])
     function selectedListRender(listSelected:string){
@@ -45,14 +89,22 @@ export function Posts() {
     }
     const [] = useState('')
     useEffect(()=>{
-        
+        fetchFeed()
     },[postsRederized])
     return ( 
         <>
+        {/** change the key stractot its with a key of bad pratices */}
             <MenuFeed  selectedListRender={selectedListRender} />
-            <FlatList  data={postsRederized} keyExtractor={(item)=>(item.id)} renderItem={({item})=>(
-            <RenderPosts avatar={item.avatar} name={item.name} id={item.id} description={item.description} photo={item.photo}/>
-            )} />
+            {loadingPost?
+                    <Box m={10}>
+                        <LoadingSpinner size={'lg'}/>
+                    </Box>
+            :
+
+            <FlatList  data={postsRederized} keyExtractor={(item)=>( `${item.id}/${Math.random().toString()}`)} renderItem={({item})=>(
+                <RenderPosts avatar={item.avatar} name={item.name} id={item.id} description={item.description} photo={item.photo}/>
+                )} />
+            }
 
             
         </>
@@ -80,18 +132,27 @@ function  MenuFeed ({selectedListRender}:MenuProps){
 )}
 
 function RenderPosts({name,description,id,photo,avatar}:PostProps){
-    const apiUrl = 'https://baseoutside.s3.amazonaws.com/Agent'
+    const navigation = useNavigation<NavigatotionAgentProps>()
+    function handleGoProfile(id:string){
+        navigation.navigate('GenericProfile',{id:id})
+    }
+    const baseUrlPhotAgent = 'https://baseoutside.s3.amazonaws.com/Agent'
+    const baseUrlPhotPublication = 'https://baseoutside.s3.amazonaws.com/PhotosPublications'
+
     return(
         <>
             <VStack  bgColor={'white'} m={4} p='4'  bg='white' rounded={'14'} space={4} shadow='1'  >
-                <HStack alignItems={'center'}>
-                    <Box  h='8' rounded={'full'} w='8' mx='2'>
-                        <Image source={{uri:(!!avatar?`${apiUrl}/${avatar}`:`${apiUrl}/user.png`)}} alt='image agent' width={'100%'} height='100%' borderWidth={'1'}   rounded={'full'}/>
-                    </Box>
-                    <Text  fontFamily={'heading'}>{name}</Text>
-                </HStack>
+                <Pressable onPress={()=>handleGoProfile(id)}>
+                    <HStack alignItems={'center'}>
+                        <Box  h='8' rounded={'full'} w='8' mx='2'>
+                            <Image source={{uri:(!!avatar?`${baseUrlPhotAgent}/${avatar}`:`${baseUrlPhotAgent}/user.png`)}} alt='image agent' width={'100%'} height='100%' borderWidth={'1'}   rounded={'full'}/>
+                        </Box>
+
+                        <Text  fontFamily={'heading'}>{name}</Text>
+                    </HStack>
+                </Pressable>
                 <Box>
-                    <Image source={photo as any} width='100%' height={'250px'} resizeMode='cover' resizeMethod="scale"  alt='example'></Image>
+                    <Image source={{uri:`${baseUrlPhotPublication}/${photo}`}} width='100%' height={'250px'} resizeMode='cover' resizeMethod="scale"  alt='example'></Image>
                 </Box>
                 <Text >{description}
                 </Text>

@@ -8,7 +8,7 @@ import { useDataAgent } from "../../Contexts/UserContext";
 
 
 
-export function Profile() {
+export function ProfileAgent() {
     const dataAgent = useDataAgent()
 
     return (
