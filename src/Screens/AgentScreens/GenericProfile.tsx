@@ -23,7 +23,7 @@ export function GenericProfile() {
     const {id} = route.params as IdAgentProps
     const [agent,setAgent] = useState({} as FindAgentDTO)
     const [loadingAgent,setLoadingAgent] = useState(false)
-
+    console.log(route.params)
     async function fetchDataProfile(){
         try{
             setLoadingAgent(true)

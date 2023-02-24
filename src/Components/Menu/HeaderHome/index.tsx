@@ -1,8 +1,9 @@
 import { HStack, Text } from "native-base";
 import { Feather } from '@expo/vector-icons';
 import { Pressable } from "react-native";
-import { ModalMenu } from "../Agent/ModalMenu";
+
 import { useState } from "react";
+import { ModalMenu } from "../../Agent/ModalMenu";
 
 export function HeaderHome(){
     const [showModal, setShowModal] = useState(false);

@@ -1,6 +1,7 @@
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { HeaderHome } from '../Components/HeaderHome';
-import { MessageIcon } from '../Components/HeaderHome/MensageIcon';
+import { HeaderHome } from '../Components/Menu/HeaderHome';
+import { MessageIcon } from '../Components/Menu/HeaderHome/MensageIcon';
+
 import { FindAgentDTO } from '../Dtos/AgentDTO/DataAgentDTO';
 import { EditProfileAgent } from '../Screens/AgentScreens/EditProfileAgent';
 import { GenericProfile } from '../Screens/AgentScreens/GenericProfile';
