@@ -1,6 +1,8 @@
-import { Box, Center, FlatList, HStack, Image, Text, VStack } from "native-base"
+import { useNavigation } from "@react-navigation/native"
+import { Box, Center, FlatList, HStack, Image, Pressable, Text, VStack } from "native-base"
 import { useEffect, useState } from "react"
 import { Alert } from "react-native"
+import { NavigatotionAgentProps } from "../../../../Routes/StackNavigation"
 import { AxiosApi } from "../../../../Services/HandleData/ProvideServices/axios"
 import { LoadingSpinner } from "../../../Shared/LoadingSpinner"
 
@@ -22,6 +24,7 @@ export function ListMission({name}:ListMissionsProps){
     const [dataloading,setDataLoading]=useState(false)
     const [dataSearch,setdataSearch] = useState([] as DataMissionProps[])
     const [selectedList,setSelectedList] = useState('')
+    
     async function handleSearchAgent(name:string){
         setDataLoading(true)
         if (!name){
@@ -69,8 +72,9 @@ export function ListMission({name}:ListMissionsProps){
 
 
 export function CardSearchMission({description,id,image_profile,name}:DataMissionProps){
+    const navigation = useNavigation<NavigatotionAgentProps>()
     return(
-        <>
+        <Pressable onPress={()=>{navigation.navigate("GenericMissionProfile",{id})}}>
         <HStack bgColor={'white'} mx='3'  rounded={10} shadow='1'p='2' space={'5'} my='1' >
                 <Image rounded={'full'} source={{uri:!!image_profile?`${baseUrlPhotAgent}/${image_profile}`:`${baseUrlPhotAgent}/user.png`}} alt='user photo' w={'20'} h='20'/>
                 <VStack flex={1}>
@@ -81,6 +85,6 @@ export function CardSearchMission({description,id,image_profile,name}:DataMissio
                     </Box>
                 </VStack>
             </HStack>
-        </>
+        </Pressable>
     )
 }

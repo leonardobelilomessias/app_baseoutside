@@ -3,10 +3,11 @@ import { HeaderHome } from '../Components/Menu/HeaderHome';
 import { MessageIcon } from '../Components/Menu/HeaderHome/MensageIcon';
 
 import { FindAgentDTO } from '../Dtos/AgentDTO/DataAgentDTO';
-import { EditProfileAgent } from '../Screens/AgentScreens/EditProfileAgent';
-import { GenericProfile } from '../Screens/AgentScreens/GenericProfile';
-import { Home } from '../Screens/AgentScreens/Home';
-import Sponsor from '../Screens/AgentScreens/Sponsor';
+import { EditProfileAgent } from '../Screens/Agents/EditProfileAgent';
+import { GenericProfile } from '../Screens/Agents/GenericProfile';
+import { Home } from '../Screens/Agents/Home';
+import Sponsor from '../Screens/Agents/Sponsor';
+import { ProfileMission } from '../Screens/Missions/ProfileMission';
 
 
 type NavigationAgent = {
@@ -15,8 +16,11 @@ type NavigationAgent = {
     EditProfile: {
         dataAgent: FindAgentDTO
     }
-    GenericProfile:{
-        id:string
+    GenericProfile: {
+        id: string
+    },
+    GenericMissionProfile: {
+        id: string
     }
 
 }
@@ -33,6 +37,8 @@ export function StackNavigation() {
                 <Screen name='Sponsor' component={Sponsor} options={{ animation: "slide_from_right" }} />
                 <Screen name='EditProfile' component={EditProfileAgent} options={{ animation: "slide_from_right" }} />
                 <Screen name='GenericProfile' component={GenericProfile} options={{ animation: "slide_from_right" }} />
+                <Screen name='GenericMissionProfile' component={ProfileMission} options={{ animation: "slide_from_right",headerShown:false }} />
+
             </Navigator>
         </>);
 }

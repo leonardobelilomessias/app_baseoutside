@@ -2,7 +2,8 @@ import { HStack, Box, VStack,Text, Pressable } from "native-base";
 import { useState } from "react";
 import { ContentData } from "./ContentData";
 
-function ContentDataAgentProfile() {
+
+function ContentDataMissionProfile() {
 
     return ( 
         <>
@@ -41,13 +42,13 @@ function  MenuProfile (){
         <Pressable bg={selected==='info'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10}  onPress={()=>setSelected('info')}>
             <Text color={selected==='info'?'green.400':'white'} textAlign={'center'}  p={2}>Info</Text>
         </Pressable>
-        <Pressable bg={selected==='journey'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setSelected('journey')}>
-            <Text  color={selected==='journey'?'green.400':'white'} textAlign={'center'}  p={2}>Jornada</Text>
+        <Pressable bg={selected==='actions'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setSelected('actions')}>
+            <Text  color={selected==='actions'?'green.400':'white'} textAlign={'center'}  p={2}>Açoes</Text>
         </Pressable>
         <Pressable bg={selected==='exclusive'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setSelected('exclusive')}>
-            <Text  color={selected==='exclusive'?'green.400':'white'}textAlign={'center'}  p={2}>Exclusive</Text>
+            <Text  color={selected==='exclusive'?'green.400':'white'}textAlign={'center'}  p={2}>Exclusivo</Text>
         </Pressable>
     </HStack>
 )}
 
-export default ContentDataAgentProfile;
+export default ContentDataMissionProfile;

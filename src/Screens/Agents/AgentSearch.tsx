@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { SearchList } from "../../Components/Agent/Search/SearchList";
 import { SearchMenu } from "../../Components/Agent/Search/SearchMenu";
-import { LoadingSpinner } from "../../Components/Shared/LoadingSpinner";
-import { AxiosApi } from "../../Services/HandleData/ProvideServices/axios";
+
+
 import SearchEmpty from '../../assets/images/searchInit.svg'
 
 type MenuProps={

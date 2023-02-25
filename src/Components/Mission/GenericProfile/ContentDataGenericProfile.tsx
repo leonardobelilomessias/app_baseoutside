@@ -1,8 +1,11 @@
 import { HStack, Box, VStack,Text, Pressable } from "native-base";
 import { useState } from "react";
-import { ContentData } from "./ContentData";
+import { FindAgentDTO } from "../../../Dtos/AgentDTO/DataAgentDTO";
 
-function ContentDataAgentProfile() {
+type ContentDataGenericProfileProps = {
+    agent:FindAgentDTO
+}
+function ContentDataGenericProfile({agent}:ContentDataGenericProfileProps) {
 
     return ( 
         <>
@@ -11,24 +14,21 @@ function ContentDataAgentProfile() {
                     <VStack bgColor={'white'} mx='2' p='4' rounded={10} shadow='2'>
                         <Box>
                             <Text fontFamily={'heading'}>Vocation</Text>
-                            <Text color={'gray.700'}>Liderança</Text>
+                            <Text>{agent?.vocation}</Text>
                         </Box>
                         <Box  >
-                            <Text  color={'gray.700'} fontFamily={'heading'}>Skills</Text>
-                            <Text>Desenvolvimento web e mobile, gestão de projetos sociais</Text>
+                            <Text fontFamily={'heading'}>Skills</Text>
+                            <Text>Example vocation</Text>
                         </Box>
                         <Box  >
-                            <Text  color={'gray.700'} fontFamily={'heading'}>Level</Text>
-                            <Text>Iniciante</Text>
+                            <Text fontFamily={'heading'}>Level</Text>
+                            <Text>Example vocation</Text>
                         </Box>
                         <Box  >
-                            <Text  color={'gray.700'} fontFamily={'heading'}>State</Text>
-                            <Text>Constante</Text>
+                            <Text fontFamily={'heading'}>state</Text>
+                            <Text>Example vocation</Text>
                         </Box>
                     </VStack>
-
-                    <ContentData/>
-                    
 
         </>
      );
@@ -50,4 +50,4 @@ function  MenuProfile (){
     </HStack>
 )}
 
-export default ContentDataAgentProfile;
+export default ContentDataGenericProfile;

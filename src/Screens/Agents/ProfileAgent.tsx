@@ -1,4 +1,4 @@
-import { Box, Button, Center, Container, HStack, Image, Stack, Text, VStack } from "native-base";
+import { Box, Button, Center, Container, HStack, Image, ScrollView, Stack, Text, VStack } from "native-base";
 import { ImageSourcePropType } from "react-native";
 import { Use } from "react-native-svg";
 import ContentDataAgentProfile from "../../Components/Agent/Profile/ContentDataAgentProfile";
@@ -12,7 +12,7 @@ export function ProfileAgent() {
     const {dataAgent} = useDataAgent()
 
     return (
-        <>
+        <ScrollView>
             <VStack >
                 {/*  Header on top with data  */}
                 <DataHeaderProfileAgent agent={dataAgent} />
@@ -21,7 +21,7 @@ export function ProfileAgent() {
                 {  /*  Geral data of agent authenticaded  */}
                 <ContentDataAgentProfile />
             </VStack>
-        </>
+        </ScrollView>
     )
 
 }

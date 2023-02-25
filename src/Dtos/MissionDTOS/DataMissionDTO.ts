@@ -1,0 +1,19 @@
+interface FetchProfileMission{
+    id:string 
+    name:string 
+    identifier:string 
+    creator:string 
+    description:string 
+    state:number
+    balance:number 
+    is_active:boolean
+    level:number
+    image_profile:string 
+    duration:number
+    date_start:string
+    date_end:string 
+    is_private:boolean
+    type:string 
+    created_at:string 
+    field:string 
+}
