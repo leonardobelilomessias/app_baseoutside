@@ -12,7 +12,6 @@ type SearchListProps={
 export function SearchList({selectItem='agent', name}:SearchListProps) {
     const [dataloading,setDataLoading]=useState(false)
     useEffect(()=>{
-        console.log('searchlist selected item =>',selectItem)
     },[selectItem])
 
     if(selectItem==='agent')return (<ListAgents name={name}/>);

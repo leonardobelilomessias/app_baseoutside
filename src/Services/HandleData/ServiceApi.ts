@@ -1,6 +1,6 @@
 import { Axios } from "axios";
 import { CreateAgentDTO } from "../../Dtos/AgentDTO/CreateAgentDTO";
-import { FindAgentDTO, FormatResponseAuthenticate } from "../../Dtos/AgentDTO/DataAgentDTO";
+import { FindAgentDTO, FormatResponseAuthenticate, FullAgentDTO } from "../../Dtos/AgentDTO/DataAgentDTO";
 import {  FormatServiceAgent } from "./HandleDataAgent/FormatsService/FormatServiceAgent";
 import { AxiosApi } from "./ProvideServices/axios";
 import axios from 'axios'
@@ -15,8 +15,8 @@ class ServiceApi implements FormatServiceAgent {
     setTokenHeader(token: string): void {
         this.api.defaults.headers.common.Authorization =`Barer ${token}`
     }
-    async findDataAgentById( id_agent :string): Promise<FindAgentDTO> {
-        const {data}  = await  this.api.post("agent/findAgentById",{id_agent:id_agent})
+    async findDataAgentById( id_agent :string): Promise<FullAgentDTO> {
+        const {data}  = await  this.api.get("agent/fetchAgentProfile",{params:{id_agent:id_agent}})
         return data
     }
 

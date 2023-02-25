@@ -1,5 +1,5 @@
 
-import { FindAgentDTO, FormatResponseAuthenticate } from "../../../Dtos/AgentDTO/DataAgentDTO"
+import { FindAgentDTO, FormatResponseAuthenticate, FullAgentDTO } from "../../../Dtos/AgentDTO/DataAgentDTO"
 import { ServiceApi } from "../ServiceApi"
 import { ServiceLocal } from "../ServiceLocal"
 import { FormatServiceAgent } from "./FormatsService/FormatServiceAgent"
@@ -53,7 +53,7 @@ class HandleDataAgent {
         const response = await this.service.authenticate({email,password})
         return response as FormatResponseAuthenticate
     }
-    async  findAgentById(id_agent:string):Promise<FindAgentDTO>{
+    async  findAgentById(id_agent:string):Promise<FullAgentDTO>{
         const response  = await this.service.findDataAgentById(id_agent)
         return response
 

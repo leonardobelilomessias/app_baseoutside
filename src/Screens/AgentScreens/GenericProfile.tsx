@@ -1,16 +1,12 @@
 import { useRoute } from "@react-navigation/native";
-import { Box, Button, Center, Container, HStack, Image, Stack, Text, VStack } from "native-base";
+import {VStack } from "native-base";
 import { useEffect, useState } from "react";
-import { Alert, ImageSourcePropType } from "react-native";
-import { Use } from "react-native-svg";
+import { Alert } from "react-native";
 import ContentDataGenericProfile from "../../Components/Agent/GenericProfile/ContentDataGenericProfile";
 import DataHeaderGenericProfile from "../../Components/Agent/GenericProfile/DataHeaderGenericProfile";
 import PersonalDataGenericProfile from "../../Components/Agent/GenericProfile/PersonalDataGenericProfile";
-import ContentDataAgentProfile from "../../Components/Agent/Profile/ContentDataAgentProfile";
-import DataHeaderProfileAgent from "../../Components/Agent/Profile/DataHeaderProfile";
-import PersonalDataAgentProfile from "../../Components/Agent/Profile/PersonalDataAgentProfile";
-import { useDataAgent } from "../../Contexts/UserContext";
-import { FindAgentDTO } from "../../Dtos/AgentDTO/DataAgentDTO";
+import { LoadingSpinner } from "../../Components/Shared/LoadingSpinner";
+import { FindAgentDTO, FullAgentDTO } from "../../Dtos/AgentDTO/DataAgentDTO";
 import { AxiosApi } from "../../Services/HandleData/ProvideServices/axios";
 
 type IdAgentProps={
@@ -18,16 +14,14 @@ type IdAgentProps={
 }
 
 export function GenericProfile() {
-    const dataAgent = useDataAgent()
     const route = useRoute()
     const {id} = route.params as IdAgentProps
-    const [agent,setAgent] = useState({} as FindAgentDTO)
+    const [agent,setAgent] = useState({} as FullAgentDTO)
     const [loadingAgent,setLoadingAgent] = useState(false)
-    console.log(route.params)
     async function fetchDataProfile(){
         try{
             setLoadingAgent(true)
-            const {data}   = await AxiosApi.post('/agent/findAgentById',{id_agent:id})
+            const {data}   = await AxiosApi.get('/agent/fetchAgentProfile',{params:{id_agent:id}})
             setAgent(data)
             
 
@@ -39,18 +33,23 @@ export function GenericProfile() {
     }
     useEffect(()=>{
         fetchDataProfile()
-    },[])
+        return()=>{id}
+    },[id])
 
     return (
         <>
+        {loadingAgent?
+        <LoadingSpinner/>:
+
             <VStack >
                 {/*  Header on top with data  */}
-                <DataHeaderGenericProfile/>
+                <DataHeaderGenericProfile agent={agent} />
                 {  /*  Personal data of agent authenticaded  */}
                 <PersonalDataGenericProfile agent={agent} />
                 {  /*  Geral data of agent authenticaded  */}
-                <ContentDataGenericProfile />
+                <ContentDataGenericProfile  agent={agent} />
             </VStack>
+        }
         </>
     )
 

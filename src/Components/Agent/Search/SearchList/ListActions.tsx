@@ -23,7 +23,6 @@ export function ListActions({name}:ListActionsProps){
     const [dataSearch,setdataSearch] = useState([] as DataActionProps[])
     const [selectedList,setSelectedList] = useState('')
     function handleRenderList(item:string){
-        //console.log(item)
     }
     
     async function handleSearchAgent(name:string){
@@ -34,9 +33,7 @@ export function ListActions({name}:ListActionsProps){
             return 
         }
         try{
-            console.log('procurando=>',name)
             const response:ResponseActionProps = await AxiosApi.get('/action/searchActionsByName',{params:{name:name}})
-            console.log(dataSearch)
             if(!response.data) {
                 setdataSearch([])
             }else{

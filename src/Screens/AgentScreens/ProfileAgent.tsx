@@ -9,13 +9,13 @@ import { useDataAgent } from "../../Contexts/UserContext";
 
 
 export function ProfileAgent() {
-    const dataAgent = useDataAgent()
+    const {dataAgent} = useDataAgent()
 
     return (
         <>
             <VStack >
                 {/*  Header on top with data  */}
-                <DataHeaderProfileAgent />
+                <DataHeaderProfileAgent agent={dataAgent} />
                 {  /*  Personal data of agent authenticaded  */}
                 <PersonalDataAgentProfile />
                 {  /*  Geral data of agent authenticaded  */}

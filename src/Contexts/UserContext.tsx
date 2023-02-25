@@ -1,6 +1,6 @@
 import { createContext, ReactElement, ReactNode, useContext, useEffect, useState } from 'react'
 import { HandleDataAgent } from '../Services/HandleData/HandleDataAgent'
-import { FindAgentDTO, FormatResponseAuthenticate } from '../Dtos/AgentDTO/DataAgentDTO'
+import { FindAgentDTO, FormatResponseAuthenticate, FullAgentDTO } from '../Dtos/AgentDTO/DataAgentDTO'
 import  {AxiosError} from 'axios'
 import { storageRemoveUser, storageUserGet, storageUserSave } from '../Storage/storageUser'
 import { storageAuthTokenRemove, storageAuthTokenSave, storageTokenGet } from '../Storage/storageToken'
@@ -10,7 +10,7 @@ token:string,
 agent_id:string
 }
 type ContextAgentProsp = {
-  dataAgent:FindAgentDTO
+  dataAgent:FullAgentDTO
   handleSign({ email, password }: HandleSignProps):Promise<AgentAutenticated > 
   loading:boolean;
   handleLogout:()=>void
@@ -29,7 +29,7 @@ export const AgentContext = createContext({} as ContextAgentProsp)
 
 export function AgentProvider({ children }: { children: ReactNode }) {
   const [loading,setLoading]= useState(false)
-  const [dataAgent, setDataAgent] = useState({} as FindAgentDTO)
+  const [dataAgent, setDataAgent] = useState({} as FullAgentDTO)
   const [dataLogin, setDataLogin] = useState({} as FormatResponseAuthenticate)
   const handleDataAgent = new HandleDataAgent('api')
 
@@ -89,7 +89,7 @@ export function AgentProvider({ children }: { children: ReactNode }) {
     
     await storageRemoveUser()
     await storageAuthTokenRemove()
-    setDataAgent({} as FindAgentDTO)
+    setDataAgent({} as FullAgentDTO)
    }
   return (
     <AgentContext.Provider value={{dataAgent,handleSign,loading,handleLogout}}>

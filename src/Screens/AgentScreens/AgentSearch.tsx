@@ -27,13 +27,11 @@ export function AgentSearch(){
     const [selectedList,setSelectedList] = useState('agent')
     const [name,setName] = useState('')
     function handleRenderList(item:string){
-        //console.log(item)
+
     }
     
     async function handleSearch(name:string){
-        console.log(name.length)
         setName(name)
-        
     }
     useEffect(()=>{
         handleRenderList(selectedList)

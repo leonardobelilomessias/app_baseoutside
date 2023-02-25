@@ -66,13 +66,11 @@ export function EditProfileAgent() {
                 }as any 
                 const userPhotoUploadForm = new FormData()
                 userPhotoUploadForm.append('image_profile',photoFile)
-                console.log(photoFile)
                 AxiosApi.patch('/agent/imageProfile',userPhotoUploadForm,{
                     headers:{
                         'Content-Type':'multipart/form-data'
                     }
                 })
-            //return photoselected
             }
             
             
@@ -80,8 +78,7 @@ export function EditProfileAgent() {
         }).catch((error)=>{
             throw error
         }).finally(()=>{setPhotoLoading(false)})
-    
-        //console.log(photoselected)
+
         setPhotoLoading(false)
     }
     

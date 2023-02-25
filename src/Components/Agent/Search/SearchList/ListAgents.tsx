@@ -1,9 +1,11 @@
-import { Box, Center, FlatList, HStack, Image, Text, VStack } from "native-base"
+import { Box, Center, FlatList, HStack, Image, Pressable, Text, VStack } from "native-base"
 import { useEffect, useState } from "react"
 import { Alert } from "react-native"
 import { AxiosApi } from "../../../../Services/HandleData/ProvideServices/axios"
 import { LoadingSpinner } from "../../../Shared/LoadingSpinner"
 import searchEmpty from '../../../../assets/images/searchEmpty.jpg'
+import { useNavigation } from "@react-navigation/native"
+import { NavigatotionAgentProps } from "../../../../Routes/StackNavigation"
 type ResponseAgentProps={
     data:DataAgentProps[]
 }
@@ -24,7 +26,6 @@ export function ListAgents({name}:ListAgentProps){
     const [dataSearch,setdataSearch] = useState([] as DataAgentProps[])
     const [selectedList,setSelectedList] = useState('')
     function handleRenderList(item:string){
-        //console.log(item)
     }
     
     async function handleSearchAgent(name:string){
@@ -35,9 +36,7 @@ export function ListAgents({name}:ListAgentProps){
             return 
         }
         try{
-            console.log('procurando=>',name)
             const response:ResponseAgentProps = await AxiosApi.get('agent/searchAgentsByname',{params:{name:name}})
-            console.log(dataSearch)
             if(!response.data) {
                 setdataSearch([])
             }else{
@@ -77,9 +76,10 @@ export function ListAgents({name}:ListAgentProps){
 
 
 export function CardSearchAgent({description,id,image_profile,name}:DataAgentProps){
+    const navigation = useNavigation<NavigatotionAgentProps>()
     return(
-        <>
-        <HStack bgColor={'white'} mx='3'  rounded={10} shadow='1'p='2' space={'5'} my='1' >
+        <Pressable _pressed={{bg:'green.200'}} onPress={()=>{navigation.navigate("GenericProfile",{id})}} >
+        <HStack bgColor={'white'} mx='3'   rounded={10} shadow='1'p='2' space={'5'} my='1' >
                 <Image rounded={'full'} source={{uri:!!image_profile?`${baseUrlPhotAgent}/${image_profile}`:`${baseUrlPhotAgent}/user.png`}} alt='user photo' w={'20'} h='20'/>
                 <VStack flex={1}>
 
@@ -89,6 +89,6 @@ export function CardSearchAgent({description,id,image_profile,name}:DataAgentPro
                     </Box>
                 </VStack>
             </HStack>
-        </>
+        </Pressable>
     )
 }

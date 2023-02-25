@@ -1,7 +1,11 @@
 import { HStack, Box, VStack,Text, Pressable } from "native-base";
 import { useState } from "react";
+import { FindAgentDTO } from "../../../Dtos/AgentDTO/DataAgentDTO";
 
-function ContentDataGenericProfile() {
+type ContentDataGenericProfileProps = {
+    agent:FindAgentDTO
+}
+function ContentDataGenericProfile({agent}:ContentDataGenericProfileProps) {
 
     return ( 
         <>
@@ -10,7 +14,7 @@ function ContentDataGenericProfile() {
                     <VStack bgColor={'white'} mx='2' p='4' rounded={10} shadow='2'>
                         <Box>
                             <Text fontFamily={'heading'}>Vocation</Text>
-                            <Text>Example vocation</Text>
+                            <Text>{agent?.vocation}</Text>
                         </Box>
                         <Box  >
                             <Text fontFamily={'heading'}>Skills</Text>

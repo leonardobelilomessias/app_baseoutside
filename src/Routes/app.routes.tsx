@@ -1,18 +1,14 @@
 import { createBottomTabNavigator, BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
-import { Center, Text } from 'native-base'
-
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useTheme } from 'native-base';
-
 import { AntDesign } from '@expo/vector-icons';
 import { StackNavigation } from './StackNavigation';
 import { AgentSearch } from '../Screens/AgentScreens/AgentSearch';
-import { Home } from '../Screens/AgentScreens/Home';
 import { ProfileAgent } from '../Screens/AgentScreens/ProfileAgent';
 import { Ionicons } from '@expo/vector-icons';
 import { PanelControllerAgent } from '../Screens/AgentScreens/PanelControllerAgent';
-import { Share } from '../Screens/AgentScreens/Share';
+import {  SharerAgent } from '../Screens/AgentScreens/SharerAgent';
 import { HeaderHome } from '../Components/Menu/HeaderHome';
 import { MessageIcon } from '../Components/Menu/HeaderHome/MensageIcon';
 
@@ -22,7 +18,7 @@ type AppRoutes = {
     Home: undefined
     Profile: undefined
     Search: undefined
-    Share: undefined
+    SharererAgent: undefined
     PanelControl:undefined
 }
 
@@ -40,7 +36,7 @@ export function AppRoutes() {
 
             <Screen name='Search' component={AgentSearch} options={{ tabBarIcon: ({ color, focused }) => (<AntDesign name="search1" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
 
-            <Screen name='Share' component={Share} options={{ tabBarIcon: ({ color, focused }) => (<AntDesign name="sharealt" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
+            <Screen name='SharererAgent' component={SharerAgent} options={{ tabBarIcon: ({ color, focused }) => (<Ionicons name="share-outline" size={24} color={focused ? colors.green['500'] : color} />), headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), headerRightContainerStyle: { marginRight: 15 } }} />
 
             <Screen name='PanelControl' component={PanelControllerAgent} options={{ tabBarIcon: ({ color, focused }) => (<Ionicons  name="md-game-controller-outline" size={24} color={focused ? colors.green['500'] : color} />), headerShown: false }} />
 

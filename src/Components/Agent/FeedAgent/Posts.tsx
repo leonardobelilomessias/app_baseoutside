@@ -63,7 +63,7 @@ export function Posts() {
             const selected:PostProps[]|undefined = await  switchRenderList({itemMenuSelected:itemMenuSelected,id_agent:dataAgent.id})
             if(selected) setPostRenderized(selected)
         }catch(e){
-            console.log(e )
+            Alert.alert("erro ao carregar os dados")
         }finally{
             setLoadingPost(false)
         }

@@ -1,15 +1,28 @@
 import { HStack, VStack,Text } from "native-base";
-import React from "react";
+import React, { useState } from "react";
+import { FullAgentDTO } from "../../../Dtos/AgentDTO/DataAgentDTO";
+import { LoadingSpinner } from "../../Shared/LoadingSpinner";
 
+type DataHeaderProps ={
+    agent:FullAgentDTO
+}
+function DataHeaderGenericProfile({agent}:DataHeaderProps) {
+    const [missions,setMissions] = useState("0")
 
-function DataHeaderGenericProfile() {
+    console.log(agent.missions)
     return ( 
     <>
         <HStack justifyContent={'space-around'} rounded='10' m='2' p='4' bgColor={'white'} shadow='2' >
-                    <ItemsTop label="Missões" amount="3"/>
-                    <ItemsTop label="Ações" amount="15"/>
-                    <ItemsTop label='Tasks' amount="22"/>
-                    <ItemsTop label="Flags" amount="14"/>    
+            {
+                !agent.missions?
+                <LoadingSpinner/>:
+                <>
+                    <ItemsTop label="Missões" amount={agent.missions.length.toString()}/>
+                    <ItemsTop label="Ações" amount={agent.actions.length.toString()}/>
+                    <ItemsTop label='Tasks' amount={agent.tasks.length.toString()}/>
+                    <ItemsTop label="Flags" amount={'15'}/>    
+                </>
+            }
         </HStack>
     </>
      );    

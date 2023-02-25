@@ -8,13 +8,12 @@ function PersonalDataAgentProfile() {
 
     const { dataAgent } = useDataAgent()
     const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
-    //console.log(dataAgent)
     const { navigate } = useNavigation<NavigatotionAgentProps>()
     return (
         <>
             <HStack space={'2'} p='4' m='2' bg='white' rounded={10} shadow='2' >
                 <VStack alignItems={'center'}>
-                    <Box h='100' w='100' rounded={'full'}   >
+                    <Box h='100' w='100'>
                         <Image source={{ uri: dataAgent.image_profile ? `${bucketS3}/${dataAgent?.image_profile}` : User }} resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user'></Image>
                     </Box>
                     <Text fontFamily={'heading'} fontSize='16'>{dataAgent.vocation}</Text>
@@ -29,7 +28,7 @@ function PersonalDataAgentProfile() {
                         </Pressable>
                     </HStack>
                     <Box h='20'>
-                        <Text > {dataAgent.description} </Text>
+                        <Text >{dataAgent.description}</Text>
                     </Box>
                     <HStack space={2}>
                         <Button size='sm' bgColor={'green.500'} >

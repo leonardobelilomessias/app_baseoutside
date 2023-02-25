@@ -30,9 +30,7 @@ export function ListMission({name}:ListMissionsProps){
             return 
         }
         try{
-            console.log('procurando=>',name)
             const response:ResponseMissionProps = await AxiosApi.get('mission/searchMissionsByname',{params:{name:name}})
-            console.log(dataSearch)
             if(!response.data) {
                 setdataSearch([])
             }else{

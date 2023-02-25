@@ -11,9 +11,8 @@ type PersonalDataAgentProps={
 }
 function PersonalDataGenericProfile({agent}:PersonalDataAgentProps) {
     const { dataAgent } = useDataAgent()
-    console.log(agent)
     const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
-    //console.log(dataAgent)
+
     const { navigate } = useNavigation<NavigatotionAgentProps>()
     return (
         <>
