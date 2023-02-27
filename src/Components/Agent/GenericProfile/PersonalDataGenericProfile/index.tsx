@@ -1,19 +1,21 @@
-import { HStack, Button, VStack, Box, Image, Text, Pressable } from "native-base";
-import { useDataAgent } from "../../../Contexts/UserContext";
+import { HStack, Button, VStack, Box, Image, Text, Pressable, Spinner } from "native-base";
+import { useDataAgent } from "../../../../Contexts/UserContext";
 import User from '../../../assets/images/userIcon.png'
 import { useNavigation } from "@react-navigation/native";
-import { NavigatotionAgentProps } from "../../../Routes/StackNavigation";
+import { NavigatotionAgentProps } from "../../../../Routes/StackNavigation";
 import { Feather } from '@expo/vector-icons';
-import { FindAgentDTO } from "../../../Dtos/AgentDTO/DataAgentDTO";
+import { FindAgentDTO, FullAgentDTO } from "../../../../Dtos/AgentDTO/DataAgentDTO";
+import { ModalColab } from "./ModalColab";
+import { useEffect, useState } from "react";
+import { ButonColab } from "./ButonColab";
 
 type PersonalDataAgentProps={
-    agent:FindAgentDTO
+    agent:FullAgentDTO
 }
+const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
 function PersonalDataGenericProfile({agent}:PersonalDataAgentProps) {
-    const { dataAgent } = useDataAgent()
-    const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
-
     const { navigate } = useNavigation<NavigatotionAgentProps>()
+    const { dataAgent } = useDataAgent()
     return (
         <>
             <HStack space={'2'} p='4' m='2' bg='white' rounded={10} shadow='2' >
@@ -39,16 +41,31 @@ function PersonalDataGenericProfile({agent}:PersonalDataAgentProps) {
                         <Text > {agent.description} </Text>
                     </Box>
                     <HStack space={2}>
-                        <Button size='sm' bgColor={'green.500'} >
-                            colab
-                        </Button>
+                    
+                    {
+                        // if agent not loading prevent render component without info
+                    !agent.colab?
+                    <Button size='sm' bgColor={'green.500'}  >
+                            <Spinner color={'white'}/>
+                    </Button>
+                        :
+                
+                    <ButonColab agent={agent}/> 
+                    }
+
                         <Button flex={1} size='sm' bgColor={'green.500'} onPress={() => { navigate('Sponsor') }}>
                             Sponsor
                         </Button>
                     </HStack>
                 </VStack>
             </HStack>
+            
         </>);
 }
 
+
 export default PersonalDataGenericProfile;
+
+
+
+

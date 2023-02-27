@@ -38,6 +38,7 @@ interface FullAgentDTO{
     skills: [];
     tasks: [];
     owner_mission: []
+    colab: []
 
 }
 interface AgentAuthenticadeDTO{

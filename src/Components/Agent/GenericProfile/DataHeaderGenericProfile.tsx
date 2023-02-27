@@ -9,7 +9,6 @@ type DataHeaderProps ={
 function DataHeaderGenericProfile({agent}:DataHeaderProps) {
     const [missions,setMissions] = useState("0")
 
-    console.log(agent.missions)
     return ( 
     <>
         <HStack justifyContent={'space-around'} rounded='10' m='2' p='4' bgColor={'white'} shadow='2' >

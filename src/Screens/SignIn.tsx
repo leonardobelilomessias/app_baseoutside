@@ -8,7 +8,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 import { AppError } from '../Utils/AppError';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDataAgent } from '../Contexts/UserContext';
 
 type FormDataProps = {
@@ -24,6 +24,7 @@ export function SignIn() {
     const [loadingButton,setLoadingButton] = useState(false)
     const { handleSign ,dataAgent} = useDataAgent()
     const { navigate } = useNavigation<AuthNavigatorRoutesProps>()
+    const {handleLogout} = useDataAgent()
     const toast = useToast()
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
         resolver: yupResolver(signSchema)
@@ -33,7 +34,6 @@ export function SignIn() {
         setLoadingButton(true)
         try {
             await  handleSign({ email, password })
-
             
         } 
         catch (error) {
@@ -56,6 +56,7 @@ export function SignIn() {
 
 
     }
+
     return (
         <ScrollView width={'full'} flex={1} contentContainerStyle={{ flexGrow: 1, justifyContent: "center", alignItems: 'center', }} showsVerticalScrollIndicator={false} >
             <VStack alignContent={'center'} alignItems='center' justifyContent={'center'} flex={1} width={'100%'} px='10' space={2} >
@@ -70,8 +71,6 @@ export function SignIn() {
                     <Controller
                         control={control}
                         name='email'
-
-
                         render={({ field: { onChange, value } }) => (
                             <Input placeholder='email' fontSize={'md'} autoCapitalize='none' onChangeText={onChange} value={value} leftElement={<Text fontSize={20} pl='2' textAlign='center' alignContent={'center'} justifyContent='center'  ><Fontisto style={{}} name="email" color="gray" size={20} /> </Text>} />
                         )}

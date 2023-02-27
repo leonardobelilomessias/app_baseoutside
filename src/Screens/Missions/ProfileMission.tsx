@@ -23,7 +23,7 @@ export function ProfileMission(){
             const {data}   = await AxiosApi.get('/mission/profileMission',{params:{id_mission:id}})
             setMission(data)
             
-            console.log(data)
+
         }catch(error){
             Alert.alert("erro ao buscar dados do usuario")
         }finally{

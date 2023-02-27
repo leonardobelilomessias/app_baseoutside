@@ -1,7 +1,7 @@
 import { Axios } from "axios";
 import { CreateAgentDTO } from "../../Dtos/AgentDTO/CreateAgentDTO";
 import { FindAgentDTO, FormatResponseAuthenticate, FullAgentDTO } from "../../Dtos/AgentDTO/DataAgentDTO";
-import {  FormatServiceAgent } from "./HandleDataAgent/FormatsService/FormatServiceAgent";
+import { FormatServiceAgent } from "./HandleDataAgent/IFormatsService/IFormatServiceAgent";
 import { AxiosApi } from "./ProvideServices/axios";
 import axios from 'axios'
 import { Alert } from "react-native";
@@ -13,20 +13,21 @@ class ServiceApi implements FormatServiceAgent {
         this.api = AxiosApi
     }
     setTokenHeader(token: string): void {
-        this.api.defaults.headers.common.Authorization =`Barer ${token}`
+        this.api.defaults.headers.common.Authorization = `Barer ${token}`
+        console.log('aqui')
     }
-    async findDataAgentById( id_agent :string): Promise<FullAgentDTO> {
-        const {data}  = await  this.api.get("agent/fetchAgentProfile",{params:{id_agent:id_agent}})
+    async fetchDataAgentById(id_agent: string): Promise<FullAgentDTO> {
+        const { data } = await this.api.get("agent/fetchAgentProfile", { params: { id_agent: id_agent } })
         return data
     }
 
     async authenticate({ email, password }: { email: string; password: string; }): Promise<FormatResponseAuthenticate> {
-        try{
+        try {
 
             const { data } = await this.api.post('/sessions', { email, password })
             return data as FormatResponseAuthenticate
-        }catch(error){
-            
+        } catch (error) {
+
             throw error
         }
     }
@@ -47,7 +48,7 @@ class ServiceApi implements FormatServiceAgent {
     async edit({ url, data }: { url: string, data: any }): Promise<any> {
         throw new Error("Method not implemented.");
     }
-    
+
 
 }
 export { ServiceApi }

@@ -1,7 +1,7 @@
 import { createContext, ReactElement, ReactNode, useContext, useEffect, useState } from 'react'
 import { HandleDataAgent } from '../Services/HandleData/HandleDataAgent'
 import { FindAgentDTO, FormatResponseAuthenticate, FullAgentDTO } from '../Dtos/AgentDTO/DataAgentDTO'
-import  {AxiosError} from 'axios'
+
 import { storageRemoveUser, storageUserGet, storageUserSave } from '../Storage/storageUser'
 import { storageAuthTokenRemove, storageAuthTokenSave, storageTokenGet } from '../Storage/storageToken'
 
@@ -36,18 +36,19 @@ export function AgentProvider({ children }: { children: ReactNode }) {
 /* handle data login agent*/
   async function handleSign({ email, password }: HandleSignProps) {
     try{
+      
       const {agent,token} = await handleDataAgent.authenticateAgent({ email, password })
       const {agent_id} = agent
-      const loggedAgent  = await handleDataAgent.findAgentById(agent_id)
+      console.log(agent_id)
+      handleDataAgent.setToken(token)
+      const loggedAgent  = await handleDataAgent.fetchAgentById(agent_id)
       if(token && loggedAgent){
        setLoading(true)
         try{
-          
           await storageUserSave(loggedAgent)
           await storageAuthTokenSave(token)
           handleDataAgent.setToken(token)
           setDataAgent(loggedAgent)
-          
         }
         catch(error){
           
@@ -62,8 +63,15 @@ export function AgentProvider({ children }: { children: ReactNode }) {
       throw error
     }
   }
-
-/* fetch data at storage when open the app  */
+  /**handle logout cleaning all data agent to redirect to signr */
+  async function handleLogout(){
+    
+    await storageAuthTokenRemove()
+    await storageRemoveUser()
+    setDataAgent({} as FullAgentDTO)
+  }
+  
+  /* fetch data at storage when open the app  */
   async function fetchData() {
     setLoading(true)
     try{
@@ -73,29 +81,23 @@ export function AgentProvider({ children }: { children: ReactNode }) {
         setDataAgent(agent)
         handleDataAgent.setToken(token)
       }
-    
     }catch(error){
       throw error
     }finally{
       setLoading(false)
-
+      
     }
   }
-   useEffect(() => {
-     fetchData()
-   }, [])
 
-   async function handleLogout(){
-    
-    await storageRemoveUser()
-    await storageAuthTokenRemove()
-    setDataAgent({} as FullAgentDTO)
-   }
+  /*load data */
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <AgentContext.Provider value={{dataAgent,handleSign,loading,handleLogout}}>
       {children}
     </AgentContext.Provider>
-
   )
 }
 

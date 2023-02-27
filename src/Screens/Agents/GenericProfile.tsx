@@ -14,6 +14,7 @@ type IdAgentProps={
 }
 
 export function GenericProfile() {
+    console.log('renderizou')
     const route = useRoute()
     const {id} = route.params as IdAgentProps
     const [agent,setAgent] = useState({} as FullAgentDTO)
@@ -21,14 +22,16 @@ export function GenericProfile() {
     async function fetchDataProfile(){
         try{
             setLoadingAgent(true)
-            const {data}   = await AxiosApi.get('/agent/fetchAgentProfile',{params:{id_agent:id}})
-            setAgent(data)
+            const response   = await AxiosApi.get('/agent/fetchAgentProfile',{params:{id_agent:id}})
             
+            setAgent(response.data)
+            
+            setLoadingAgent(false)
 
         }catch(error){
             Alert.alert("erro ao buscar dados do usuario")
-        }finally{
             setLoadingAgent(false)
+        }finally{
         }
     }
     useEffect(()=>{
