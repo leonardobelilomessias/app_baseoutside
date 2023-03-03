@@ -39,8 +39,7 @@ export function AgentProvider({ children }: { children: ReactNode }) {
       
       const {agent,token} = await handleDataAgent.authenticateAgent({ email, password })
       const {agent_id} = agent
-      console.log(agent_id)
-      handleDataAgent.setToken(token)
+        handleDataAgent.setToken(token)
       const loggedAgent  = await handleDataAgent.fetchAgentById(agent_id)
       if(token && loggedAgent){
        setLoading(true)

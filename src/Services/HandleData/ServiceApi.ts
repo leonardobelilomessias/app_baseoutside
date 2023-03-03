@@ -14,7 +14,6 @@ class ServiceApi implements FormatServiceAgent {
     }
     setTokenHeader(token: string): void {
         this.api.defaults.headers.common.Authorization = `Barer ${token}`
-        console.log('aqui')
     }
     async fetchDataAgentById(id_agent: string): Promise<FullAgentDTO> {
         const { data } = await this.api.get("agent/fetchAgentProfile", { params: { id_agent: id_agent } })

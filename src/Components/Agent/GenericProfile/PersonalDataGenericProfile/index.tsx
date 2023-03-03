@@ -53,7 +53,7 @@ function PersonalDataGenericProfile({agent}:PersonalDataAgentProps) {
                     <ButonColab agent={agent}/> 
                     }
 
-                        <Button flex={1} size='sm' bgColor={'green.500'} onPress={() => { navigate('Sponsor') }}>
+                        <Button flex={1} size='sm' bgColor={'green.500'} onPress={() => { navigate('Sponsor',{id_sponsered:agent.id}) }}>
                             Sponsor
                         </Button>
                     </HStack>

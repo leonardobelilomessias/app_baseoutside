@@ -12,7 +12,9 @@ import { ProfileMission } from '../Screens/Missions/ProfileMission';
 
 type NavigationAgent = {
     HomeAgent: undefined
-    Sponsor: undefined
+    Sponsor: {
+        id_sponsered: string
+    }
     EditProfile: {
         dataAgent: FindAgentDTO
     }
@@ -36,7 +38,7 @@ export function StackNavigation() {
                 <Screen name='HomeAgent' component={Home} options={{ headerTitle: () => (<HeaderHome />), headerRight: () => (<MessageIcon />), }} />
                 <Screen name='Sponsor' component={Sponsor} options={{ animation: "slide_from_right" }} />
                 <Screen name='EditProfile' component={EditProfileAgent} options={{ animation: "slide_from_right" }} />
-                <Screen name='GenericProfile' component={GenericProfile} options={{ animation: "slide_from_right" }} />
+                <Screen name='GenericProfile' component={GenericProfile} options={{ animation: "slide_from_right", headerShown:false }} />
                 <Screen name='GenericMissionProfile' component={ProfileMission} options={{ animation: "slide_from_right",headerShown:false }} />
 
             </Navigator>

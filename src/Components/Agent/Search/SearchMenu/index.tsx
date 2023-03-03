@@ -14,16 +14,16 @@ export function  SearchMenu({selectedListRenderList}:MenuProps){
     return(
     <HStack m='1'>
 
-        <Pressable bg={itemMenuSelected==='agent'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('agent')}>
+        <Pressable bg={itemMenuSelected==='agent'?'white':'gray.300'} flex={1} m='1'  py='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('agent')}>
             <Text  color={itemMenuSelected==='agent'?'green.400':'white'} textAlign={'center'}  >Agents</Text>
         </Pressable>
-        <Pressable bg={itemMenuSelected==='mission'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('mission')}>
+        <Pressable bg={itemMenuSelected==='mission'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('mission')} py='1'>
             <Text  color={itemMenuSelected==='mission'?'green.400':'white'}textAlign={'center'}  >Missoes</Text>
         </Pressable>
-        <Pressable bg={itemMenuSelected==='action'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('action')}>
+        <Pressable bg={itemMenuSelected==='action'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('action')} py='1'>
             <Text  color={itemMenuSelected==='action'?'green.400':'white'}textAlign={'center'}  >Açoes</Text>
         </Pressable>
-        <Pressable bg={itemMenuSelected==='task'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('task')}>
+        <Pressable bg={itemMenuSelected==='task'?'white':'gray.300'} flex={1} m='1' shadow='2' rounded={10} onPress={()=>setItemMenuSelected('task')} py='1'>
             <Text  color={itemMenuSelected==='task'?'green.400':'white'}textAlign={'center'}  >Tasks</Text>
         </Pressable>
     </HStack>

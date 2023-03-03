@@ -9,6 +9,7 @@ import { SignUp } from './src/Screens/SingUp';
 import { Routes } from './src/Routes';
 import { AuthRoutes } from './src/Routes/auth.routes';
 import { AgentDataProvider, AgentProvider } from './src/Contexts/UserContext';
+
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_100Thin_Italic, Roboto_700Bold, Roboto_400Regular })
   return (

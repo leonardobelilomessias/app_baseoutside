@@ -7,6 +7,7 @@ import { AppError } from '../../../Utils/AppError'
 })
 AxiosApi.interceptors.response.use((response)=>response,error=>{
     if(error.response.data && error.response){
+
         return Promise.reject(new AppError(error.response.data.message))
     }else{
         return Promise.reject(error)

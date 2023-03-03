@@ -77,6 +77,9 @@ export function ListAgents({name}:ListAgentProps){
 
 export function CardSearchAgent({description,id,image_profile,name}:DataAgentProps){
     const navigation = useNavigation<NavigatotionAgentProps>()
+    function handleGoProfile(){
+        navigation.navigate("GenericProfile",{id})
+    }
     return(
         <Pressable _pressed={{bg:'green.200'}} onPress={()=>{navigation.navigate("GenericProfile",{id})}} >
         <HStack bgColor={'white'} mx='3'   rounded={10} shadow='1'p='2' space={'5'} my='1' >
