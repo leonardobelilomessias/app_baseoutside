@@ -1,4 +1,3 @@
-import { usePaymentSheet, useStripe,CardField ,CardForm,CardFormView,GooglePayButton,CardFieldInput,} from "@stripe/stripe-react-native";
 import { Button, Center, FormControl, Icon, Input, KeyboardAvoidingView, Radio, ScrollView, Text, useTheme, VStack } from "native-base";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
@@ -78,7 +77,6 @@ export default function CheckoutScreen({id_sponsered}:{id_sponsered:string}) {
         <Button  colorScheme={'emerald'} variant='ghost' onPress={()=>{goBack()}}>
            voltar
         </Button>
-        <CardField style={{backgroundColor:"red"}} cardStyle={{borderColor:"#000000", borderWidth:1,backgroundColor:"red"}}/>
         </VStack>
         <ModalSponsor value={value} createSponsor={createSponsor} showModal={showModal} setShowModal={setShowModal} />
 

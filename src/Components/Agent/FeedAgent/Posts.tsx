@@ -118,7 +118,7 @@ function RenderPosts({ name, description, id, photo, avatar, publication_id }: P
 
     return (
         <>
-            <VStack bgColor={'white'} mx={4} my='2' p='4' bg='white' rounded={'14'} space={4} shadow='1'  >
+            <VStack bgColor={'white'} mx={4} my='2' p='4' bg='white' rounded={'8'} space={4} shadow='1'  >
                 <Pressable onPress={() => handleGoProfile(id)}>
                     <HStack alignItems={'center'}>
                         <Box h='8' rounded={'full'} w='8' mx='2'>

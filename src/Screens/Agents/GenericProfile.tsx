@@ -1,5 +1,5 @@
 import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
-import {VStack } from "native-base";
+import {ScrollView, VStack } from "native-base";
 import { useCallback, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import ContentDataGenericProfile from "../../Components/Agent/GenericProfile/ContentDataGenericProfile";
@@ -51,6 +51,7 @@ export function GenericProfile() {
         <>
         {loadingAgent?
         <LoadingSpinner/>:
+            <ScrollView>
 
             <VStack >
                 {/*  Header on top with data  */}
@@ -60,6 +61,7 @@ export function GenericProfile() {
                 {  /*  Geral data of agent authenticaded  */}
                 <ContentDataGenericProfile  agent={agent} />
             </VStack>
+            </ScrollView>
         }
         </>
     )

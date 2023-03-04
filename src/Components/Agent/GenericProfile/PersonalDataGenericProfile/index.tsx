@@ -23,8 +23,7 @@ function PersonalDataGenericProfile({agent}:PersonalDataAgentProps) {
                     <Box h='100' w='100' rounded={'full'}   >
                         <Image source={{ uri: agent.image_profile ? `${bucketS3}/${agent?.image_profile}` : `${bucketS3}/user.png` }} resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user'></Image>
                     </Box>
-                    <Text fontFamily={'heading'} fontSize='16'>{!!agent.vocation? agent.vocation:'Geral'}</Text>
-                    <Text color={'gray.400'}>{dataAgent.state === 0 ? 'iniciante' : 'experiente'}</Text>
+
                 </VStack>
 
                 <VStack flex={1} ml='1' >
@@ -37,9 +36,7 @@ function PersonalDataGenericProfile({agent}:PersonalDataAgentProps) {
                         </Pressable>
                         }
                     </HStack>
-                    <Box h='20'>
-                        <Text > {agent.description} </Text>
-                    </Box>
+                    <Text mb='2' color='gray.400' fontSize='16'>{!!agent.vocation? agent.vocation:'Geral'}</Text>
                     <HStack space={2}>
                     
                     {

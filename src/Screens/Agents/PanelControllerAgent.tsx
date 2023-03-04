@@ -4,7 +4,7 @@ export function PanelControllerAgent(){
     return(
         <>
         <Center flex={1} >
-            <Text  fontFamily={'heading'}>Pinel de controle</Text>
+            <Text  fontFamily={'heading'}>Painel de controle</Text>
         </Center>
         </>
     )
