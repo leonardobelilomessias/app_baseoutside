@@ -18,8 +18,7 @@ type DataMissionProps={
 type ResponseMissionProps={
     data:DataMissionProps[]
 }
-const baseUrlPhotAgent = 'https://baseoutside.s3.amazonaws.com/Agent'
-
+const baseUrlPhotAgent = `${process.env.host}/images/hand.jpg`
 export function ListMission({name}:ListMissionsProps){
     const [dataloading,setDataLoading]=useState(false)
     const [dataSearch,setdataSearch] = useState([] as DataMissionProps[])

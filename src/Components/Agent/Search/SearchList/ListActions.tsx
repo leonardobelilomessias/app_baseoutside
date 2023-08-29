@@ -17,7 +17,7 @@ type DataActionProps={
 type ResponseActionProps={
     data:DataActionProps[]
 }
-const baseUrlPhotAgent = 'https://baseoutside.s3.amazonaws.com/Agent'
+const baseUrlPhotAgent = `${process.env.host}/images/hand.jpg`
 export function ListActions({name}:ListActionsProps){
     const [dataloading,setDataLoading]=useState(false)
     const [dataSearch,setdataSearch] = useState([] as DataActionProps[])

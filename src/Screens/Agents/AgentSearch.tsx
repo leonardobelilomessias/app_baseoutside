@@ -22,8 +22,8 @@ type DataAgentProps={
     description:string
 }
 
-const baseUrlPhotAgent = 'https://baseoutside.s3.amazonaws.com/Agent'
-const baseUrlPhotPublication = 'https://baseoutside.s3.amazonaws.com/PhotosPublications'
+const baseUrlPhotAgent = `${process.env.host}/images/hand.jpg`
+const baseUrlPhotPublication = `${process.env.host}/images/hand.jpg`
 export function AgentSearch(){
     const [dataSearch,setdataSearch] = useState([] as DataAgentProps[])
     const [selectedList,setSelectedList] = useState('agent')

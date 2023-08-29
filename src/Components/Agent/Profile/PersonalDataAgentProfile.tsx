@@ -1,4 +1,4 @@
-import { HStack, Button, VStack, Box, Image, Text, Pressable } from "native-base";
+import { HStack, Button, VStack, Box, Image, Text, Pressable, Center } from "native-base";
 import { useDataAgent } from "../../../Contexts/UserContext";
 import User from '../../../assets/images/userIcon.png'
 import { useNavigation } from "@react-navigation/native";
@@ -7,39 +7,49 @@ import { Feather } from '@expo/vector-icons';
 function PersonalDataAgentProfile() {
 
     const { dataAgent } = useDataAgent()
-    const bucketS3 = `https://baseoutside.s3.amazonaws.com/Agent`
+    const bucketS3 = `${process.env.host}/images/hand.jpg`
     const { navigate } = useNavigation<NavigatotionAgentProps>()
     return (
         <>
-            <HStack space={'2'} p='4' m='2' bg='white' rounded={10} shadow='2' >
+            <VStack  p='4' m='2'  >
                 <VStack alignItems={'center'}>
-                    <Box h='100' w='100'>
-                        <Image source={{ uri: dataAgent.image_profile ? `${bucketS3}/${dataAgent?.image_profile}` : User }} resizeMode='contain' rounded={'full'} width='100%' h='100%' alt='user'></Image>
-                    </Box>
-                    <Text fontFamily={'heading'} fontSize='16'>{dataAgent.vocation}</Text>
-                    <Text color={'gray.400'}>{dataAgent.state === 0 ? 'iniciante' : 'experiente'}</Text>
+                    <Center backgroundColor={'red.300'} size={'xl'} >
+                    <Image  resizeMode="cover"  source={{
+                        uri: "http://192.168.15.169:3333/images/hand.jpg"
+                        }} alt="Alternate Text" size="xl" rounded={'full'} />
+                                         <Pressable position={'absolute'} bottom={'0'} right={'0'} onPress={() => { navigate('EditProfile', { dataAgent }) }}>
+                            <Feather name="edit" size={20} color="black"  />
+                        </Pressable>
+                    </Center>
+                    <Text fontFamily={'heading'} fontSize='25'p={0}m={'0'}>
+                            {dataAgent.name}
+                            
+                    </Text>
+                    <Text color={'gray.400'} fontSize={'xs'} fontWeight={'bold'}>
+                        {dataAgent.vocation?dataAgent.vocation:"Generico"}
+                    </Text>
+                    <HStack space={2}>
+                        <Button width={135} h={35} bgColor={'green.500'} borderRadius={'full'} >
+                            colab
+                        </Button>
+                        <Button  width={135} borderRadius={'full'}  colorScheme={'green.500'} variant={'outline'} color={'red.500'} onPress={() => { navigate('Sponsor') }}>
+                            Sponsor
+                        </Button>
+                    </HStack>
+
                 </VStack>
 
-                <VStack flex={1}  >
+                <VStack  >
                     <HStack alignContent={"space-between"} justifyContent='space-between' >
-                        <Text fontFamily={'heading'} fontSize='20'>{dataAgent.name}</Text>
-                        <Pressable onPress={() => { navigate('EditProfile', { dataAgent }) }}>
-                            <Feather name="edit" size={20} color="black" />
-                        </Pressable>
+         
+       
                     </HStack>
                     <Box h='20'>
                         <Text >{dataAgent.description}</Text>
                     </Box>
-                    <HStack space={2}>
-                        <Button size='sm' bgColor={'green.500'} >
-                            colab
-                        </Button>
-                        <Button flex={1} size='sm' bgColor={'green.500'} onPress={() => { navigate('Sponsor') }}>
-                            Sponsor
-                        </Button>
-                    </HStack>
+
                 </VStack>
-            </HStack>
+            </VStack>
         </>);
 }
 
